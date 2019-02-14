@@ -1,15 +1,13 @@
 ---
-title: Technical Overview
+title: 기술 개요
 ---
 
-## What is Flutter?
+## Flutter란?
+
+Flutter는 고성능의 우수한 품질의 iOS 및 Android을 단일 코드 베이스로 개발할 수 있는 모바일 앱 SDK입니다.
 
-Flutter is a mobile app SDK for building high-performance, high-fidelity,
-apps for iOS and Android, from a single codebase.
-
-The goal is to enable developers to deliver high-performance apps that feel
-natural on different platforms. We embrace differences in scrolling behaviors,
-typography, icons, and more.
+Flutter의 목표는 개발자들이 서로 다른 플랫폼들에서 자연스럽게 동작하는 고성능의 앱을 개발할 수 있게 하는 것입니다.
+우리는 스크롤 동작, 글씨, 아이콘들, 기타 여러 차이점들을 아우릅니다.
 
 <object type="image/svg+xml" data="/images/whatisflutter/hero-shrine.svg" style="width: 100%; height: 100%;"></object>
 
