@@ -173,13 +173,17 @@ hold the current battery state.
 First, we construct the channel. We use a `MethodChannel` with a single
 platform method that returns the battery level.
 
-먼저, 채널을 작성합니다. 우린 배터리 레벨을 반환하는 한개의 플랫폼 메소드를 가진 `MethodChannel`을 사용할 
+먼저, 채널을 작성합니다. 우린 배터리 레벨을 반환하는 한개의 플랫폼 메소드를 가진 `MethodChannel`을 사용할
 것입니다.
 
 The client and host sides of a channel are connected through a channel name
 passed in the channel constructor. All channel names used in a single app must
 be unique; we recommend prefixing the channel name with a unique 'domain
 prefix', e.g. `samples.flutter.io/battery`.
+
+채널의 클라이언트와 호스트는 채널 생성자를 통해 전달된 채널 이름으로 연결됩니다. 하나의 앱에서 사용하는 모든
+채널 이름은 유일해야 합니다; 유일한 도메일 prefix를 사용해서 채널 이름에 prefix를 추가하는것이 권장됩니다.
+예) `samples.flutter.io/battery`
 
 <!-- skip -->
 ```dart
@@ -192,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const platform = const MethodChannel('samples.flutter.io/battery');
 
   // Get battery level.
+  // 배터리 레벨을 가져옵니다.
 }
 ```
 
@@ -200,12 +205,19 @@ to call via the String identifier `getBatteryLevel`. The call may fail&mdash;for
 example if the platform does not support the platform API (such as when running
 in a simulator), so wrap the `invokeMethod` call in a try-catch statement.
 
+다음으로, `getBatteryLevel` 구분자를 통해 특정 메소드를 지정해서 메소드 채널에서 메소드를 실행합니다.
+호출은 실패할 수도 있습니다. 예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서 실행시)가 있습니다.
+그러니 `invokeMethod` 호출을 try-catch 문으로 감싸주세요.
+
 Use the returned result to update the user interface state in `_batteryLevel`
 inside `setState`.
+
+반환된 결과를 `setState` 에서 사용해 `_batteryLevel`안에 있는 UI 상태를 업데이트 하세요.
 
 <!-- skip -->
 ```dart
   // Get battery level.
+  // 배터리 레벨을 가져옵니다.
   String _batteryLevel = 'Unknown battery level.';
 
   Future<void> _getBatteryLevel() async {
@@ -226,6 +238,9 @@ inside `setState`.
 Finally, replace the `build` method from the template to contain a small user
 interface that displays the battery state in a string, and a button for
 refreshing the value.
+
+마지막으로, 템플릿의 `build` 메소드를 문자열로 배터리 레벨을 표시하기 위한 작은 UI 와 값을 새로고침하기 위한
+버튼을 생성하는 코드로 바꾸세요.
 
 <!-- skip -->
 ```dart
@@ -251,24 +266,41 @@ Widget build(BuildContext context) {
 
 ### Step 3a: Add an Android platform-specific implementation using Java {#example-java}
 
+### 3a 단계: Java를 이용한 안드로이드 플랫폼 특화 구현 {#example-java}
+
 *Note*: The following steps use Java. If you prefer Kotlin, skip to step
 3b.
 
+*Note*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, 3b 단계로 넘어가세요.
+
 Start by opening the Android host portion of your Flutter app in Android Studio:
+
+안드로이드 스튜디오에서 안드로이드 호스트 부분을 염으로써 시작하기:
 
 1. Start Android Studio
 
+1. 안드로이드 스튜디오 실행
+
 1. Select the menu item 'File > Open...'
+
+1. 메뉴에서 'File > Open...' 선택
 
 1. Navigate to the directory holding your Flutter app, and select the `android`
 folder inside it. Click OK.
 
+1. Flutter 앱이 있는 디렉토리로 이동해서, 그 안의 `android` 폴더를 선택합니다. OK를 클릭합니다.
+
 1. Open the file `MainActivity.java` located in the `java` folder in the Project
 view.
+
+1. 프로젝트 뷰에서 `java` 폴더 안에 있는 `MainActivity.java` 를 엽니다.
 
 Next, create a `MethodChannel` and set a `MethodCallHandler` inside the
 `onCreate` method. Make sure to use the same channel name as was used on the
 Flutter client side.
+
+다음으로, `MethodChannel` 을 만들고 `onCreate` 메소드 안에서 `MethodCallHandler` 를 설정합니다.
+Flutter 클라이언트 측과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 ```java
 import io.flutter.app.FlutterActivity;
@@ -301,7 +333,12 @@ Next, we add the actual Android Java code that uses the Android battery APIs to
 retrieve the battery level. This code is exactly the same as you would have
 written in a native Android app.
 
+다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 Java 코드를 추가합니다. 해당 코드는
+네이티브 안드로이드 앱에서 사용하던 것과 완전히 같습니다.
+
 First, add the needed imports at the top of the file:
+
+첫번째로, 파일 상단에 필요한 import 들을 추가해주세요.
 
 ```
 import android.content.ContextWrapper;
@@ -315,6 +352,8 @@ import android.os.Bundle;
 
 Then add the following as a new method in the activity class, below the `onCreate`
 method:
+
+그리고 아래 코드를 액티비티 클래스 `onCreate` 메소드 아래에 새로운 메소드로 작성해주세요.
 
 ```java
 private int getBatteryLevel() {
@@ -340,6 +379,12 @@ Android code written in the previous step, and passes back a response for both
 the success and error cases using the `response` argument. If an unknown method
 is called, report that instead. Replace:
 
+마지막으로, 먼저 추가한 `onMethodCall` 메소드를 완성합니다. 하나의 플랫폼 메소드를 다루어야 하며(`getBatteryLevel`)
+`call` 매개변수에서 테스트해보세요.  ? 이 플랫폼 메소드의 구현은 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 확인되지 않은 메소드가 호출된다면, 기록하세요.
+
+아래 코드를
+
 ```java
 public void onMethodCall(MethodCall call, Result result) {
     // TODO
@@ -347,6 +392,7 @@ public void onMethodCall(MethodCall call, Result result) {
 ```
 
 with:
+이렇게 변경하세요:
 
 ```java
 @Override
@@ -369,13 +415,23 @@ You should now be able to run the app on Android. If you are using the Android
 Emulator, you can set the battery level in the Extended Controls panel
 accessible from the `...` button in the toolbar.
 
+이제 안드로이드에서 앱을 실행하는것이 가능합니다. 만약 안드로이드 에뮬레이터를 사용하고 있다면 , 툴바의 `...`
+버튼에서 제어판을 열어서 배터리 레벨을 설정할 수 있습니다.
+
 ### Step 3b: Add an Android platform-specific implementation using Kotlin {#example-kotlin}
+
+## 3b 단계: 코를린을 사용해서 안드로이드 플랫폼 특화 구현 추가 {#example-kotlin}
 
 *Note*: The following steps are similar to step 3a, only using Kotlin rather than
 Java.
 
+*Note*: 이 단계는 Java 말고 Kotlin을 사용하는것 외엔 3a와 비슷합니다.
+
 This step assumes that you created your project in [step 1.](#example-project)
 using the `-a kotlin` option.
+
+이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
+가정합니다.
 
 Start by opening the Android host portion of your Flutter app in Android Studio:
 
@@ -390,9 +446,15 @@ Start by opening the Android host portion of your Flutter app in Android Studio:
    view. (참고: If you are editing using Android Studio 2.3, note that the
    'kotlin' folder is shown as-if named 'java'.)
 
+1. 프로젝트 뷰에서 `kotlin` 폴더 안에 있는 `MainActivity.kt` 파일을 열어주세요. (참고: 만약 안드로이드 스튜디오
+  2.3 버전을 사용한다면, 'kotlin' 폴더가 'java' 폴더로 보이는 것에 유의하세요.)
+
 Next, inside the `onCreate` method, create a `MethodChannel` and call
 `setMethodCallHandler`. Make sure to use the same channel name as was used on
 the Flutter client side.
+
+다음으로, `onCreate` 메소드 안에서 `MethodChannel`을 만들고 `setMethodCallHandler` 를 호출하세요.
+Flutter 클라이언트 쪽에서 사용한 것과 같은 채널 이름을 사용했는지 확인해주세요.
 
 ```kotlin
 import android.os.Bundle
@@ -419,6 +481,8 @@ written in a native Android app.
 
 First, add the needed imports at the top of the file:
 
+중복
+
 ```
 import android.content.Context
 import android.content.ContextWrapper
@@ -431,6 +495,8 @@ import android.os.Build.VERSION_CODES
 
 Next, add the following as a new method in the `MainActivity` class, below the `onCreate`
 method:
+
+중복
 
 ```kotlin
   private fun getBatteryLevel(): Int {
@@ -453,6 +519,8 @@ handle a single platform method, `getBatteryLevel`, so test for that in the
 Android code written in the previous step, and passes back a response for both
 the success and error cases using the `response` argument. If an unknown method
 is called, report that instead. Replace:
+
+중복
 
 ```kotlin
     MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
@@ -482,24 +550,42 @@ You should now be able to run the app on Android. If you are using the Android
 Emulator, you can set the battery level in the Extended Controls panel
 accessible from the `...` button in the toolbar.
 
+중복
+
 ### Step 4a: Add an iOS platform-specific implementation using Objective-C {#example-objc}
+
+### 4a 단계: Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
 
 *Note*: The following steps use Objective-C. If you prefer Swift, skip to step
 4b.
 
+*Note*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, 4b로 건너뛰세요.
+
 Start by opening the iOS host portion of your Flutter app in Xcode:
+
+Xcode에서 Flutter 앱의 iOS 호스트 부분을 염으로써 시작합니다.
 
 1. Start Xcode
 
+1. Xcode 실행
+
 1. Select the menu item 'File > Open...'
+
+1. 메뉴에서 'File > Open...' 선택
 
 1. Navigate to the directory holding your Flutter app, and select the `ios`
 folder inside it. Click OK.
 
+1. Flutter 앱이 위치한 디렉토리고 이동하고, 그 안의 `ios` 폴더를 선택합니다. OK 를 클릭합니다.
+
 1. Make sure the Xcode projects builds without errors.
+
+1. Xcode 프로젝트가 에러 없이 빌드되는지 확인하세요.
 
 1. Open the file `AppDelegate.m` located under Runner > Runner in the Project
 navigator.
+
+1. 프로젝트 네비게이터에서 Runner > Runner 에 있는 `AppDelegate.m` 파일을 엽니다.
 
 Next, create a `FlutterMethodChannel` and add a handler inside the `application
 didFinishLaunchingWithOptions:` method. Make sure to use the same channel name
@@ -666,24 +752,41 @@ displays 'Battery info unavailable.'.
 
 ## Separate platform-specific code from UI code {#separate}
 
+## 플랫폼별 코드를 UI 코드에서 분리하기 {#separate}
+
 If you expect to use your platform-specific code in multiple Flutter apps, it
 can be useful to separate the code into a platform plugin located in a directory
 outside your main application. See [developing
 packages](/docs/development/packages-and-plugins/developing-packages) for details.
 
+만약 당신의 플랫폼 특화 코드를 다양한 Flutter 앱에서 사용할 거 같다면, 메인 어플리케이션 바깥 디렉토리에 코드를
+분리하는것이 유용합니다. 자세한 내용은 [developing
+packages](/docs/development/packages-and-plugins/developing-packages)를 참고하세요
+
 ## Publish platform-specific code as a package {#publish}
+
+## 플랫폼 특화 코드를 패키지로 배포하기 {#publish}
 
 If you wish to share your platform-specific with other developers in the Flutter
 ecosystem, please see [publishing
 packages](/docs/development/packages-and-plugins/developing-packages#publish) for details.
 
+만약 당신의 플랫폼 특화 코드를 Flutter 생태계의 다른 개발자들과 공유하고 싶다면, [publishing
+packages](/docs/development/packages-and-plugins/developing-packages#publish) 를 참고해주세요.
+
 ## Custom channels and codecs
+
+## 커스텀 채널과 코덱
 
 Besides the above mentioned `MethodChannel`, you can also use the more plain
 [`BasicMessageChannel`][BasicMessageChannel], which supports basic, asynchronous
 message passing using a custom message codec. Further, you can use the
 specialized [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec], and
 [`JSONMessageCodec`][JSONMessageCodec] classes, or create your own codec.
+
+위에 언급한 `MethodChannel` 외에도, 더 기본적여 커스텀 메시지 코덱을 사용해서 비동기 메시지를 전달하는
+[`BasicMessageChannel`][BasicMessageChannel] 를 사용할 수도 있습니다. 또한 특수한 [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec], and
+[`JSONMessageCodec`][JSONMessageCodec] 클래스들 을 사용하거나, 직접 코덱을 만드세요. 
 
 [BasicMessageChannel]: https://docs.flutter.io/flutter/services/BasicMessageChannel-class.html
 [BinaryCodec]: https://docs.flutter.io/flutter/services/BinaryCodec-class.html
