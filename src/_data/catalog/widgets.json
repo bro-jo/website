@@ -7,13 +7,13 @@
     "subcategories": [
       "Single-child layout widgets"
     ],
-    "description": "A convenience widget that combines common painting, positioning, and sizing widgets.",
+    "description": "일반적인 그리기, 배치, 그리고 크기 조정을 포함한 편리한 위젯입니다.",
     "link": "https://docs.flutter.io/flutter/widgets/Container-class.html",
     "image": "<svg viewBox='0 0 100 100'><defs><marker id='arrow-container-1' orient='auto-start-reverse' viewBox='0 0 1 1' markerWidth='3' markerHeight='3' refX='0.5' refY='0.5'><path d='M 1 0.5 L 0.5 0 L 0.5 1 z' fill='#f50057'/></marker><marker id='arrow-container-2' orient='auto-start-reverse' viewBox='0 0 1 1' markerWidth='3' markerHeight='3' refX='0.5' refY='0.5'><path d='M 1 0.5 L 0.5 0 L 0.5 1 z' fill='#ffffff'/></marker><filter id='shadow-container' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='4'/></filter><linearGradient id='gradient-container' x1='0' y1='0.2' x2='0.4' y2='0.9'><stop offset='55%' stop-color='#ffffff'/><stop offset='100%' stop-color='#fdccdd'/></linearGradient></defs><rect x='0' y='0' width='100' height='100' fill='#3949ab'/><rect x='15' y='25' width='70' height='47.5' rx='10' ry='10' fill='#000000' filter='url(#shadow-container)'/><rect x='15' y='25' width='70' height='47.5' rx='10' ry='10' fill='url(#gradient-container)' stroke-width='5' stroke='#3b75ad'/><rect x='30' y='40' width='40' height='30' fill='#4dd0e1'/><line x1='20' y1='55' x2='27' y2='55' stroke='#f50057' stroke-width='2' marker-start='url(#arrow-container-1)' marker-end='url(#arrow-container-1)'/><line x1='73' y1='55' x2='80' y2='55' stroke='#f50057' stroke-width='2' marker-start='url(#arrow-container-1)' marker-end='url(#arrow-container-1)'/><line x1='50' y1='30' x2='50' y2='37' stroke='#f50057' stroke-width='2' marker-start='url(#arrow-container-1)' marker-end='url(#arrow-container-1)'/><line x1='50' y1='78' x2='50' y2='82' stroke='#f50057' stroke-width='2' marker-start='url(#arrow-container-1)' marker-end='url(#arrow-container-1)'/><line x1='16' y1='17.5' x2='85' y2='17.5' stroke='#ffffff' stroke-width='2' marker-start='url(#arrow-container-2)' marker-end='url(#arrow-container-2)'/><line x1='7.5' y1='26' x2='7.5' y2='72' stroke='#ffffff' stroke-width='2' marker-start='url(#arrow-container-2)' marker-end='url(#arrow-container-2)'/></svg>"
   },
   {
     "name": "Row",
-    "description": "Layout a list of child widgets in the horizontal direction.",
+    "description": "수평 방향으로 자식 위젯들의 리스트를 배치합니다.",
     "categories": [
       "Basics"
     ],
@@ -25,7 +25,7 @@
   },
   {
     "name": "Column",
-    "description": "Layout a list of child widgets in the vertical direction.",
+    "description": "수직 방향으로 자식 위젯들의 리스트를 배치합니다.",
     "categories": [
       "Basics"
     ],
@@ -37,7 +37,7 @@
   },
   {
     "name": "Image",
-    "description": "A widget that displays an image.",
+    "description": "이미지를 표시하는 위젯입니다",
     "categories": [
       "Basics",
       "Assets, Images, and Icons"
@@ -50,7 +50,7 @@
   },
   {
     "name": "Text",
-    "description": "A run of text with a single style.",
+    "description": "단일 스타일을 가진 텍스트입니다.",
     "categories": [
       "Basics",
       "Text"
@@ -61,7 +61,7 @@
   },
   {
     "name": "Icon",
-    "description": "A Material Design icon.",
+    "description": "머티리얼 디자인의 아이콘입니다.",
     "categories": [
       "Basics",
       "Assets, Images, and Icons"
@@ -74,7 +74,7 @@
   },
   {
     "name": "RaisedButton",
-    "description": "A Material Design raised button. A raised button consists of a rectangular piece of material that hovers over the interface.",
+    "description": "머티리얼 디자인의 raised button입니다. raised button은 인터페이스 위에 떠 있는 사각형의 머티리얼로 구성되어 있습니다.",
     "categories": [
       "Basics"
     ],
@@ -87,7 +87,7 @@
   {
     "name": "Scaffold",
     "sample": "Scaffold",
-    "description": "Implements the basic Material Design visual layout structure. This class provides APIs for showing drawers, snack bars, and bottom sheets.",
+    "description": "기본적인 머티리얼 디자인의 시각 레이아웃 구조를 구현합니다. 이 클래스는 showing drawers, snack bars, 그리고 bottom sheets를 위한 API를 제공합니다.",
     "categories": [
       "Basics"
     ],
@@ -100,7 +100,7 @@
   {
     "name": "Appbar",
     "sample": "AppBar",
-    "description": "A Material Design app bar. An app bar consists of a toolbar and potentially other widgets, such as a TabBar and a FlexibleSpaceBar.",
+    "description": "머티리얼 디자인의 app bar입니다. app bar는 TabBar와 FlexibleSpaceBar과 같은 다른 잠재적인 위젯과 toolbar로 구성됩니다.",
     "categories": [
       "Basics"
     ],
@@ -112,7 +112,7 @@
   },
   {
     "name": "FlutterLogo",
-    "description": "The Flutter logo, in widget form. This widget respects the IconTheme.",
+    "description": "위젯 형태의 Flutter 로고입니다. 이 위젯은 IconTheme을 따릅니다.",
     "categories": [
       "Basics"
     ],
@@ -122,7 +122,7 @@
   },
   {
     "name": "Stack",
-    "description": "This class is useful if you want to overlap several children in a simple way, for example having some text and an image, overlaid with a gradient and a button attached to the bottom.",
+    "description": "이 클래스는 그라데이션이 덮여 있고 바닥에 버튼이 부착된 텍스트와 이미지를 가질 때처럼, 여러 개의 자식들을 간단히 겹칠 때 유용합니다.",
     "categories": [
       "Stack"
     ],
@@ -134,7 +134,7 @@
   },
   {
     "name": "Placeholder",
-    "description": "A widget that draws a box that represents where other widgets will one day be added.",
+    "description": "다른 위젯이 언젠가 추가될 것을 나타내는 박스를 그리는 위젯입니다.",
     "categories": [
       "Basics"
     ],
