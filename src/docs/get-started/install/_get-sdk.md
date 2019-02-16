@@ -67,7 +67,7 @@ $ flutter doctor
     • Android SDK at /Users/obiwan/Library/Android/sdk
     <strong>✗ Android SDK is missing command line tools; download from https://goo.gl/XxQghQ</strong>
     • Try re-installing or updating your Android SDK,
-      visit https://flutter-io.kr/setup/#android-setup for detailed instructions.
+      visit {{site.url}}/setup/#android-setup for detailed instructions.
 </pre>
 
 다음 섹션에서는 이러한 작업을 수행하고 설치 과정을 완수하는 방법을 설명합니다.

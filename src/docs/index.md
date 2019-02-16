@@ -15,7 +15,7 @@ description: The landing page for Flutter documentation.
 {% endfor -%}
 </div>
 
-## flutter.io의 새로운 기능
+## 이 사이트의 새로운 기능
 
 **2018년 11월 5일**
 
@@ -91,7 +91,7 @@ description: The landing page for Flutter documentation.
 [Cookbook](/docs/cookbook)
 : 일반적인 Flutter 사용 사례를 다루는 레시피 모음. (개선 중)
 
-[깃허브에 있는 예제 앱](https://github.com/flutter/samples/blob/master/INDEX.md)
+[깃허브에 있는 예제 앱]({{site.github}}/flutter/samples/blob/master/INDEX.md)
 : Flutter를 잘 활용한 샘플 앱 모음. (개선 중)
 
 [Flutter에서 리소스와 이미지 파일 추가하기](/docs/development/ui/assets-and-images)
@@ -106,7 +106,7 @@ description: The landing page for Flutter documentation.
 [국제화](/docs/development/accessibility-and-localization/internationalization)
 : 글로벌화하세요! Flutter 앱을 국제화하는 방법.
 
-[Effective Dart](https://www.dartlang.org/guides/language/effective-dart)
+[Effective Dart]({{site.dart-site}}/guides/language/effective-dart)
 : 더 나은 다트 코드를 작성법 가이드.
 
 ## 전문적인 주제
