@@ -144,7 +144,7 @@
   },
   {
     "name": "BottomNavigationBar",
-    "description": "Bottom navigation bars make it easy to explore and switch between top-level views in a single tap. The BottomNavigationBar widget implements this component.",
+    "description": "Bottom navigation bar는 상위 레벨 뷰를 탐색하고 전환하기 쉽게 합니다. BottomNavigationBar 위젯은 이 구성 요소를 구현합니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -155,7 +155,7 @@
   {
     "name": "TabBar",
     "sample": "TabBar",
-    "description": "A Material Design widget that displays a horizontal row of tabs.",
+    "description": "가로 행의 탭들을 보여주는 머티리얼 디자인의 위젯입니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -166,7 +166,7 @@
   {
     "name": "TabBarView",
     "sample": "TabBarView",
-    "description": "A page view that displays the widget which corresponds to the currently selected tab. Typically used in conjunction with a TabBar.",
+    "description": "현재 선택된 탭에 해당하는 위젯을 보여주는 페이지 뷰. 주로 TabBar와 함께 사용되어집니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -176,7 +176,7 @@
   },
   {
     "name": "MaterialApp",
-    "description": "A convenience widget that wraps a number of widgets that are commonly required for applications implementing Material Design.",
+    "description": "머티리얼 디자인을 구현하는 애플리케이션에서 일반적으로 요구하는 많은 위젯들을 포장하는 편리한 위젯입니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -186,7 +186,7 @@
   },
   {
     "name": "WidgetsApp",
-    "description": "A convenience class that wraps a number of widgets that are commonly required for an application.",
+    "description": "애플리케이션에서 일반적으로 요구하는 많은 위젯들을 포장하는 편리한 클래스입니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -196,7 +196,7 @@
   },
   {
     "name": "Drawer",
-    "description": "A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.",
+    "description": "Scaffold의 가장자리에서 수평 방향으로 밀어져 애플리케이션의 내비게이션 링크들을 보여주는 머티리얼 디자인 패널입니다.",
     "categories": [],
     "subcategories": [
       "App structure and navigation"
@@ -206,7 +206,7 @@
   },
   {
     "name": "FloatingActionButton",
-    "description": "A floating action button is a circular icon button that hovers over content to promote a primary action in the application. Floating action buttons are most commonly used in the Scaffold.floatingActionButton field.",
+    "description": "floating action button은 콘텐츠 위에 떠 있음으로써 애플리케이션 내의 주요 행동을 강조합니다. Floating action button들은 Scaffold.floatingActionButton 필드에 주로 사용됩니다.",
     "categories": [],
     "subcategories": [
       "Buttons"
@@ -216,7 +216,7 @@
   },
   {
     "name": "FlatButton",
-    "description": "A flat button is a section printed on a Material Components widget that reacts to touches by filling with color.",
+    "description": "FlatButton은 터치할 때 색을 채움으로써 반응하는 구역이 출력되는 머티리얼 구성 요소 위젯입니다.",
     "categories": [],
     "subcategories": [
       "Buttons"
@@ -227,7 +227,7 @@
   {
     "name": "IconButton",
     "sample": "IconButton",
-    "description": "An icon button is a picture printed on a Material widget that reacts to touches by filling with color (ink).",
+    "description": "IconButton은 터치할 때 색을 채움으로써 반응하는 이미지가 그려지는 머티리얼 위젯입니다.",
     "categories": [],
     "subcategories": [
       "Buttons"
@@ -237,7 +237,7 @@
   },
   {
     "name": "DropdownButton",
-    "description": "Shows the currently selected item and an arrow that opens a menu for selecting another item.",
+    "description": "현재 선택한 항목과 다른 항목을 고를 수 있는 메뉴를 여는 화살표를 보여줍니다.",
     "categories": [],
     "subcategories": [
       "Buttons"
