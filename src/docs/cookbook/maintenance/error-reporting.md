@@ -1,41 +1,37 @@
 ---
-title: Report errors to a service
+title: 서비스에 에러 보고하기
 prev:
-  title: Working with long lists
+  title: 큰 사이즈의 리스트 다루기
   path: /docs/cookbook/lists/long-lists
 next:
-  title: Animating a Widget across screens
+  title: 스크린간 위젯 애니메이션
   path: /docs/cookbook/navigation/hero-animations
 ---
 
-While one always tries to create apps that are free of bugs, they're sure
-to crop up from time to time. Since buggy apps lead to unhappy
-users and customers, it's important to understand how often your users
-experience bugs and where those bugs occur. That way,
-you can prioritize the bugs with the highest impact and work to fix them.
+버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 완전히 자유로울 수 없습니다.
+버그가 많은 앱은 사용자 불만을 야기하기 때문에, 앱의 사용자들이 버그를 얼마나 자주, 
+주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해야,
+ 버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있기 때문입니다.
 
-How can you determine how often your users experiences bugs? Whenever an error
-occurs, create a report containing the error that occurred and the
-associated stacktrace. You can then send the report to an error tracking
-service, such as Sentry, Fabric, or Rollbar.
+사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을 까요? 에러가 발생하면 
+에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 Rollbar와 같은 
+에러 추적 서비스에 보내세요.
 
-The error tracking service aggregates all of the crashes your users
-experience and groups them together. This allows you to know how often your
-app fails and where the users run into trouble.
+에러 추적 서비스는 사용자가 경험한 모든 에러들을 모아 그룹화합니다. 
+이를 통해 얼마나 자주 에러가 발생하고 어디서 사용자가 어려움을 겪는지 알 수 있게 됩니다.
 
-In this recipe, you'll see how to report errors to the
-[Sentry](https://sentry.io/welcome/) crash reporting service.
+이 페이지에서는 에러 리포팅 서비스인 [Sentry](https://sentry.io/welcome/)에 에러를 리포팅하는 방법에 대해 다룹니다.
 
 ## Directions
 
-  1. Get a DSN from Sentry
-  2. Import the Sentry package
-  3. Create a `SentryClient`
-  4. Create a function to report errors
-  5. Catch and report Dart errors
-  6. Catch and report Flutter errors
+  1. DSN from Sentry로부터 DSN 얻기
+  2. Sentry 패키지 import
+  3. `SentryClient` 생성
+  4. 에러 리포팅을 위한 함수 생성
+  5. 다트 에러 리포팅하기
+  6. Flutter 에러 리포팅하기
 
-## 1. Get a DSN from Sentry
+## 1. Sentry로부터 DSN 얻기
 
 Before reporting errors to Sentry, you'll need a "DSN" to uniquely identify
 your app with the Sentry.io service.
