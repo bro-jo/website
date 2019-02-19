@@ -1,10 +1,10 @@
 ---
-title: Writing custom platform-specific code
-short-title: Platform-specific code
+title: 플랫폼 별 코드 작성
+short-title: 플랫폼 별 코드
 ---
 
 이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은
-이미 있는 패키지를 통해 사용이 가능합니다.[using packages](/docs/development/packages-and-plugins/using-packages) 를 봐주세요.
+이미 있는 패키지를 통해 사용이 가능합니다. [using packages](/docs/development/packages-and-plugins/using-packages) 를 참조하세요.
 
 Flutter는 안드로이드에서의 Java와 Kotlin, iOS에서의 ObjectiveC 와 Swift 에서 가능한 플랫폼 별 api를
 사용하게 해주는 유연한 시스템을 사용합니다.
@@ -15,23 +15,23 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 * 앱의 Flutter 부분은 플랫폼 채널을 통해서 iOS 나 Android 가 될 수 있는 *호스트* 에게 메시지를 보냅니다.
 
 * *호스트* 는 플랫폼 채널에서 메시지를 받습니다. 그리고 플랫폼 네이티브 언어를 사용해서
-몇개 던지 플랫폼 별 APIs 를 호출하고, Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
+몇 개 던지 플랫폼 별 APIs 를 호출하고, Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
 
 ## 아키텍쳐 훝어 보기: 플랫폼 채널 {#architecture}
 
-클라이언트(UI)와 호스트(플랫폼)이 플랫폼 채널에서 사용하는 메시지 형태는 아래 다이어그램에 그려져있습니다.:
+클라이언트(UI)와 호스트(플랫폼)이 플랫폼 채널에서 사용하는 메시지 형태는 아래 다이어그램에 그려져있습니다.
 
 ![Platform channels architecture](/images/PlatformChannels.png)
 
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 비동기적으로 전달됩니다.
 
 클라이언트 쪽에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
-메소드로 보낼 수 있도록 가능하게 합니다. 플랫폼 쪽에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
+메소드로 보낼 수 있도록 해줍니다. 플랫폼 쪽에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
 *Note*: 원한다면 메소드 호출은 반대의 방향으로도 보내질 수 있습니다.
-(Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인[`quick_actions`](https://pub.dartlang.org/packages/quick_actions)을 봐주세요.
+(Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`](https://pub.dartlang.org/packages/quick_actions))을 봐주세요.
 
 [MethodChannel]: https://docs.flutter.io/flutter/services/MethodChannel-class.html
 [MethodChannelAndroid]: https://docs.flutter.io/javadoc/io/flutter/plugin/common/MethodChannel.html
@@ -40,7 +40,7 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 ### 플랫폼 채널 지원 데이터형과 코덱 {#codec}
 
 표준 플랫폼 채널은 간단한 json 형태의 효율적인 바이너리 직렬화를 지원하는 boolean, numbers, Strings,
-byte butters, List, Map등의 표준 메시지 코덱을 사용합니다. (참고 [`StandardMessageCodec`](https://docs.flutter.io/flutter/services/StandardMessageCodec-class.html))
+byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고: [`StandardMessageCodec`](https://docs.flutter.io/flutter/services/StandardMessageCodec-class.html)).
 이 값들에 대한 메시지 직렬화와 역직렬화는 당신이 값을 보내고 받을 때 자동으로 이루어집니다.
 
 아래 표는 dart의 자료형이 플랫폼에서 어떻게 받고 보내지는지 보여줍니다.
@@ -67,8 +67,8 @@ byte butters, List, Map등의 표준 메시지 코덱을 사용합니다. (참�
 iOS의 `device.batteryLevel` API 를 `getBatteryLevel` 이라는 단일 플랫폼 메시지로 사용합니다.
 
 해당 예시는 메인 앱 자체에 플랫폼 별 코드를 추가합니다. 만약 당신이 다양한 앱에서 플랫폼 특화 코드를 재사용하고
-싶다면, 프로젝트 시작 방법이 약간 다릅니다. ([developing
-packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참고)
+싶다면, 프로젝트 시작 방법이 약간 다릅니다([developing
+packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참고).
 하지만 플랫폼 채널 코드는 여전히 같은 방법으로 작성됩니다.
 
 *Note*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`](https://github.com/flutter/flutter/tree/master/examples/platform_channel)
@@ -78,14 +78,14 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 ### Step 1: 새로운 앱 프로젝트 만들기 {#example-project}
 
-새로운 앱을 만들어서 시작하세요:
+새로운 앱을 만들어서 시작하세요.
 
 * 터미널에서 실행: `flutter create batterylevel`
 
-기본적으로 안드로이드는 Java, iOS는 Objective-C를 사용해서 작성하는 템플릿으로 지원됩니다. kotlin 이나 Swift를
+기본적으로 안드로이드는 Java, iOS는 Objective-C를 사용해서 작성하는 템플릿으로 지원됩니다. Kotlin 이나 Swift를
 사용하려면 `-i` 혹은 `-a` 플래그를 사용하세요.
 
-* 테미널에서 실행: `flutter create -i swift -a kotlin batterylevel`
+* 터미널에서 실행: `flutter create -i swift -a kotlin batterylevel`
 
 ### Step 2: Flutter 플랫폼 클라이언트 생성 {#example-client}
 
@@ -114,11 +114,11 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 
 다음으로, `getBatteryLevel` 구분자를 통해 특정 메소드를 지정해서 메소드 채널에서 메소드를 실행합니다.
-호출은 실패할 수도 있습니다. 예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서의 실행등)가 있습니다.
+호출은 실패할 수도 있습니다. 예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서의 실행 등)가 있습니다.
 그러므로 `invokeMethod` 호출을 try-catch 문으로 감싸주세요.
 
 
-반환된 결과를 `setState` 함수 안에서 사용해서 `_batteryLevel`안에 있는 UI 상태를 업데이트 하세요.
+반환된 결과를 `setState` 함수 안에서 사용해서 `_batteryLevel` 변수가 들고있는 UI 상태를 업데이트 하세요.
 
 <!-- skip -->
 ```dart
@@ -283,7 +283,7 @@ public void onMethodCall(MethodCall call, Result result) {
 버튼에서 제어판을 열어서 배터리 레벨을 설정할 수 있습니다.
 
 
-## Step 3b : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
+### Step 3b : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
 
 
 *Note*: 이 단계는 Java 말고 Kotlin을 사용하는것 외엔 3a와 비슷합니다.
