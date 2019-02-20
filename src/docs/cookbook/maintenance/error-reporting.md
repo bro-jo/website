@@ -1,109 +1,98 @@
 ---
-title: Report errors to a service
+title: 서비스에 에러 보고하기
 prev:
-  title: Working with long lists
+  title: 큰 사이즈의 리스트 다루기
   path: /docs/cookbook/lists/long-lists
 next:
-  title: Animating a Widget across screens
+  title: 스크린간 위젯 애니메이션
   path: /docs/cookbook/navigation/hero-animations
 ---
 
-While one always tries to create apps that are free of bugs, they're sure
-to crop up from time to time. Since buggy apps lead to unhappy
-users and customers, it's important to understand how often your users
-experience bugs and where those bugs occur. That way,
-you can prioritize the bugs with the highest impact and work to fix them.
+버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 완전히 자유로울 수 없습니다.
+버그가 많은 앱은 사용자 불만을 야기하기 때문에, 앱의 사용자들이 버그를 얼마나 자주, 
+주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해야,
+ 버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있기 때문입니다.
 
-How can you determine how often your users experiences bugs? Whenever an error
-occurs, create a report containing the error that occurred and the
-associated stacktrace. You can then send the report to an error tracking
-service, such as Sentry, Fabric, or Rollbar.
+사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을 까요? 에러가 발생하면 
+에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 Rollbar와 같은 
+에러 추적 서비스에 보내세요.
 
-The error tracking service aggregates all of the crashes your users
-experience and groups them together. This allows you to know how often your
-app fails and where the users run into trouble.
+에러 추적 서비스는 사용자가 경험한 모든 에러들을 모아 그룹화합니다. 
+이를 통해 얼마나 자주 에러가 발생하고 어디서 사용자가 어려움을 겪는지 알 수 있게 됩니다.
 
-In this recipe, you'll see how to report errors to the
-[Sentry](https://sentry.io/welcome/) crash reporting service.
+이 페이지에서는 에러 리포팅 서비스인 [Sentry](https://sentry.io/welcome/)에 에러를 리포팅하는 방법에 대해 다룹니다.
 
-## Directions
+## 진행 단계
 
-  1. Get a DSN from Sentry
-  2. Import the Sentry package
-  3. Create a `SentryClient`
-  4. Create a function to report errors
-  5. Catch and report Dart errors
-  6. Catch and report Flutter errors
+  1. DSN from Sentry로부터 DSN 얻기
+  2. Sentry 패키지 import
+  3. `SentryClient` 생성
+  4. 에러 리포팅을 위한 함수 생성
+  5. 다트 에러 catch하고 리포팅하기
+  6. Flutter 에러 catch하고 리포팅하기
 
-## 1. Get a DSN from Sentry
+## 1. Sentry로부터 DSN 얻기
 
-Before reporting errors to Sentry, you'll need a "DSN" to uniquely identify
-your app with the Sentry.io service.
+Sentry에 에러 리포팅을 하기 전에 Sentry.io 서비스에서 여러분의 앱을 식별할 수 있는 "DSN"이 필요합니다.
 
-To get a DSN, use the following steps:
+DSN을 얻기 위해 다음 단계를 진행하세요:
 
-  1. [Create an account with Sentry](https://sentry.io/signup/)
-  2. Log in to the account
-  3. Create a new app
-  4. Copy the DSN
+  1. [Sentry 계정 생성](https://sentry.io/signup/)
+  2. 생성한 계정으로 로그인
+  3. 새로운 앱 생성
+  4. DSN 복사
 
-## 2. Import the Sentry package
+## 2. Sentry 패키지 Import
 
-Import the
-[`sentry`]({{site.pub-pkg}}/sentry) package into the app. The
-sentry package makes it easier to send error reports to the Sentry
-error tracking service.
+[`Sentry`]({{site.pub-pkg}}/sentry) 패키지를 앱에 import 하세요.
+Sentry 패키지를 사용하면 에러 리포트를 더 쉽게 Sentry 에러 추적 서비스에 보낼 수 있습니다.
 
 ```yaml
 dependencies:
   sentry: <latest_version>
 ```
 
-## 3. Create a `SentryClient`
+## 3. `SentryClient` 생성
 
-Create a `SentryClient`. You'll use the `SentryClient` to send
-error reports to the sentry service.
+`SentryClient`를 생성하세요. `SentryClient`는 Sentry 서비스에 에러 리포트를 보내기 위해 사용됩니다.
 
 <!-- skip -->
 ```dart
 final SentryClient _sentry = SentryClient(dsn: "App DSN goes Here");
 ```
 
-## 4. Create a function to report errors
+## 4. 에러 리포팅을 위한 함수 생성
 
-With Sentry set up, you can begin to report errors. Since you don't want to
-report errors to Sentry during development, first create a function that
-let's you know whether you're in debug or production mode.
+Sentry 설정이 완료되면 이제 에러 리포팅을 할 수 있습니다. 
+개발 단계에서는 에러 리포팅을 할 필요가 없기 때문에, 우선 디버그 모드인지 프로덕션 모드인지 구분할 수 있는 함수를 만드세요.
 
 <!-- skip -->
 ```dart
 bool get isInDebugMode {
-  // Assume you're in production mode
+  // 기본적으로 프로덕션 모드라고 가정합니다.
   bool inDebugMode = false;
 
-  // Assert expressions are only evaluated during development. They are ignored
-  // in production. Therefore, this code only sets `inDebugMode` to true
-  // in a development environment.
+  // Assert 표현식은 개발 단계에서만 사용되며, 프로덕션 모드에서는 무시됩니다.
+  // 그러므로 이 코드는 개발 단계에서는 'inDebugMode'를 항상 true 값으로 설정합니다.
   assert(inDebugMode = true);
 
   return inDebugMode;
 }
 ```
 
-Next, use this function in combination with the `SentryClient` to report
-errors when the app is in production mode.
+그런 다음 프로덕션 모드일 때는 에러를 리포팅할 수 있도록 `SentryClient`를 사용합니다.
 
 <!-- skip -->
 ```dart
 Future<void> _reportError(dynamic error, dynamic stackTrace) async {
-  // Print the exception to the console
+  // exception을 콘솔에 출력합니다
   print('Caught error: $error');
   if (isInDebugMode) {
-    // Print the full stacktrace in debug mode
+    // 디버그 모드에서는 전체 stacktrace를 출력합니다
     print(stackTrace);
     return;
   } else {
-    // Send the Exception and Stacktrace to Sentry in Production mode
+    // 프로덕션 모드에서는 exception과 stacktrace를 Sentry로 보냅니다.
     _sentry.captureException(
       exception: error,
       stackTrace: stackTrace,
@@ -112,59 +101,49 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
 }
 ```
 
-## 5. Catch and report Dart errors
+## 5. 다트 에러 catch하고 리포팅하기
 
-Now that you have a function to report errors depending on the environment,
-you need a way to capture Dart errors.
+개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 다트 에러를 catch할 방법이 필요합니다.
 
-For this task, run your app inside a custom
-[`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html). Zones
-establish an execution context for the code. This provides a convenient way to
-capture all errors that occur within that context by providing an `onError`
-function.
+이 작업을 진행하기 위해, 커스텀 [`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
+Zone은 코드가 수행할 컨텍스트를 설정합니다. `onError` 함수를 제공하여 컨텍스트 내에서 발생하는 모든 에러를 편리하게 잡을 수 있게 해줍니다.
 
-In this case, you'll run the app in a new `Zone` and capture all errors by
-providing an `onError` callback.
+아래 코드에서는 앱을 새로운 `Zone`에서 실행하고 `onError` 콜백을 통해 모든 에러를 잡습니다.
 
 <!-- skip -->
 ```dart
 runZoned<Future<void>>(() async {
   runApp(CrashyApp());
 }, onError: (error, stackTrace) {
-  // Whenever an error occurs, call the `_reportError` function. This sends
-  // Dart errors to the dev console or Sentry depending on the environment.
+  // 에러가 발생할 때 마다, `_reportError` 함수를 호출합니다.
+  // 발생한 다트 에러는 개발 환경에 따라 콘솔에 출력되거나 Sentry로 보내집니다.
   _reportError(error, stackTrace);
 });
 ```
 
-## 6. Catch and report Flutter errors
+## 6. Flutter 에러 catch하고 리포팅하기
 
-In addition to Dart errors, Flutter can throw additional errors, such as
-platform exceptions that occur when calling native code. You need to be sure to
-capture and report these types of errors as well.
+다트 에러 뿐만 아니라, Flutter도 native 코드를 호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
+이러한 유형의 에러들 역시 반드시 리포팅해야 합니다.
 
-To capture Flutter errors, override the
-[`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html)
-property. If you're in debug mode, use a convenience function
-from Flutter to properly format the error. If you're in production mode, 
-send the error to the `onError` callback defined in the previous step.
+Flutter 에러를 처리하기 위해서는 [`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html) 프로퍼티를 오버라이드 하세요.
+만약 디버그 모드라면, Flutter의 편리한 함수를 사용하여 에러를 적절하게 지정하세요.
+만약 프로덕션 모드라면, 이전 단계에서 정의한 `onError` 콜백에 에러를 보내세요.
 
 <!-- skip -->
 ```dart
-// This captures errors reported by the Flutter framework.
+// Flutter 프레임워크에 의해 보고된 에러를 포착합니다.
 FlutterError.onError = (FlutterErrorDetails details) {
   if (isInDebugMode) {
-    // In development mode, simply print to console.
+    // 개발 모드에서는 단순히 콘솔에 출력합니다.
     FlutterError.dumpErrorToConsole(details);
   } else {
-    // In production mode, report to the application zone to report to
-    // Sentry.
+    // 프로덕션 모드에서는 Sentry에 보고하기 위해 application zone에 보고 합니다.
     Zone.current.handleUncaughtError(details.exception, details.stack);
   }
 };
 ```
 
-## Complete example
+## 전체 예제
 
-To view a working example, see the
-[Crashy]({{site.github}}/flutter/crashy) example app.
+동작하는 전체 예제 코드는 [Crashy]({{site.github}}/flutter/crashy)에서 확인할 수 있습니다.
