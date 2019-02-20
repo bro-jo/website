@@ -1,31 +1,21 @@
 ---
-title: Technical Overview
+title: 기술 개요
 ---
 
-## What is Flutter?
+## Flutter란?
 
-Flutter is a mobile app SDK for building high-performance, high-fidelity,
-apps for iOS and Android, from a single codebase.
+Flutter는 고성능, 고품질의 iOS, 안드로이드 앱을 단일 코드 베이스로 개발할 수 있는 모바일 앱 SDK입니다.
 
-The goal is to enable developers to deliver high-performance apps that feel
-natural on different platforms. We embrace differences in scrolling behaviors,
-typography, icons, and more.
+스크롤 동작, 글씨, 아이콘과 같이 플랫폼 별로 달라지는 부분들을 아울러서 서로 다른 플랫폼에서도 자연스럽게 동작하는 고성능의 앱을 개발할 수 있게 하는 것이 Flutter의 목표입니다.
 
 <object type="image/svg+xml" data="/images/whatisflutter/hero-shrine.svg" style="width: 100%; height: 100%;"></object>
 
-This is a demo app from the
-[Gallery]({{site.github}}/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo),
-a collection of Flutter sample apps you can run after installing Flutter
-and setting up your environment. Shrine has high-quality scrolling images,
-interactive cards, buttons, dropdown lists, and a shopping cart page.
-To look at the single codebase for this and more examples,
-[visit our GitHub
-repository]({{site.github}}/flutter/flutter/tree/master/examples).
+지금 보시는 앱은 Flutter 설치 및 환경 구축 후 직접 돌려볼 수 있는 데모 앱입니다. 
+그 외 다른 Flutter 샘플 앱들은 [Gallery]({{site.github}}/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo)에서 확인할 수 있습니다.
+Shrine은 고품질의 이미지 스크롤, 대화식 카드, 버튼, 드롭다운 리스트 그리고 쇼핑 카트 페이지를 갖고 있습니다. 
+이 앱의 단일 코드 베이스 혹은 더 많은 예제들을 보고 싶다면, [GitHub 저장소를 방문하세요]({{site.github}}/flutter/flutter/tree/master/examples).
 
-No mobile development experience is required to get started. Apps are written
-in [Dart]({{site.dart-site}}), which looks familiar if you've used a
-language like Java or JavaScript. Experience with object-oriented languages
-is definitely helpful, but even non-programmers have made Flutter apps!
+Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 앱은 [다트]({{site.dart-site}})로 작성되는데, 만약 자바나 자바스크립트와 같은 언어를 사용해본 경험이 있다면 익숙할 수 있습니다. 객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 프로그래머가 아닌 사람들도 Flutter 앱을 만들었습니다!
 
 ## Why use Flutter?
 
