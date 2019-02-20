@@ -17,23 +17,19 @@ Shrine은 고품질의 이미지 스크롤, 대화식 카드, 버튼, 드롭다�
 
 Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 앱은 [다트]({{site.dart-site}})로 작성되는데, 만약 자바나 자바스크립트와 같은 언어를 사용해본 경험이 있다면 익숙할 수 있습니다. 객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 프로그래머가 아닌 사람들도 Flutter 앱을 만들었습니다!
 
-## Why use Flutter?
+## 왜 Flutter를 사용해야 할까요?
 
-What are some advantages of Flutter? It helps you:
+Flutter의 장점은 무엇일까요:
 
-*   Be highly productive
-    *   Develop for iOS and Android from a single codebase
-    *   Do more with less code, even on a single OS, with a modern, expressive
-        language and a declarative approach
-    *   Prototype and iterate easily
-        *   Experiment by changing code and reloading as your app runs (with
-            hot reload)
-        *   Fix crashes and continue debugging from where the app left off
-*   Create beautiful, highly-customized user experiences
-    *   Benefit from a rich set of Material Design and Cupertino (iOS-flavor)
-        widgets built using Flutter's own framework
-    *   Realize custom, beautiful, brand-driven designs, without the
-        limitations of OEM widget sets
+*   높은 생산성
+    *   단일 코드베이스로 iOS와 안드로이드 개발
+    *   모던하고 표현적인 언어 그리고 선언적 접근법을 통해 단일 OS에서 더 적은 코드로 더 많은 것을 할 수 있습니다.
+    *   쉬운 프로토타입과 반복적 개발
+        *   앱 실행 중에 코드를 바꾸고 리로드하여 개발을 할 수 있습니다. (hot reload)
+        *   앱이 중단된 지점에서 문제를 수정하고 디버깅을 이어나갈 수 있습니다.
+*   아름답고, 고도로 커스터마이징된 UX를 만들 수 있습니다.
+    *   Flutter의 자체 프레임워크를 사용하여 머티리얼 디자인과 쿠퍼티노 (iOS) 스타일의 풍부한 위젯들을 만들 수 있습니다.
+    *   OEM 위젯의 제한없이 맞춤형의 아름다운 브랜드 주도 디자인을 실현할 수 있습니다.
 
 ## Core principles
 
