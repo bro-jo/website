@@ -4,7 +4,7 @@ prev:
   title: 에디터 설정
   path: /docs/get-started/editor
 next:
-  title: 첫 번째 Flutter 앱 작성
+  title: 첫 Flutter 앱 작성
   path: /docs/get-started/codelab
 toc: false
 ---

@@ -9,7 +9,7 @@ $ flutter create myapp
 $ cd myapp
 ```
 
-위 명령은 [머터리얼 컴포넌트](https://material.io/guidelines/)를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
+위 명령은 [머터리얼 컴포넌트]({{site.material}}/guidelines/)를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
 
 {% include_relative _main-code-note.md  %}
 

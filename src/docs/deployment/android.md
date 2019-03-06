@@ -1,112 +1,83 @@
 ---
-title: Preparing an Android App for Release
+title: 안드로이드 앱 출시 준비하기
 short-title: Android
 ---
 
-During a typical development cycle, you test an app using
-`flutter run` at the command line, the **Run** and **Debug**
-toolbar buttons in IntelliJ. By default,
-Flutter builds a *debug* version of your app.
+Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 IntelliJ에서의 툴바 **Run** 과 **Debug** 버튼을 통해 앱을 테스트할 수 있습니다. Flutter는 기본적으로 앱의 *debug* 버전을 빌드합니다.
 
-When you're ready to prepare a *release* version for Android, for example to
-[publish to the Google Play Store][play], follow the steps on this page.
+[Google Play 출시][play]하기 위해 안드로이드의 *release* 버전을 준비할 준비가 되었다면, 다음 단계를 따르세요.
 
-## Review the App Manifest
+## 앱 매니페스트 검토하기
 
-Review the default [App Manifest][manifest] file `AndroidManifest.xml` located
-in `<app dir>/android/app/src/main` and verify the values are correct,
-especially:
+올바른 앱 설정을 위하여 `<app dir>/android/app/src/main` 에 있는 기본 [앱 매니페스트][manifest] 파일인 `AndroidManifest.xml`을 검토하고 올바른 값들을 포함하는지 확인하세요.
+특히:
 
-* `application`: Edit the `android:label` in the
-  [`application`][applicationtag] tag to reflect the final name of the app.
+* `application`: 앱의 이름을 반영하기 위해 [`application`][applicationtag]에 있는 `android:label`을 수정하세요.
 
-* `uses-permission`: Remove the `android.permission.INTERNET`
-  [permission][permissiontag] if your application code does not need Internet
-  access. The standard template includes this tag to enable communication
-  between Flutter tools and a running app.
+* `uses-permission`: 앱 내에서 인터넷 접근이 필요하지 않다면 `android.permission.INTERNET` [permission][permissiontag]을 제거하세요. 기본 템플릿에서는 Flutter 도구와 실행 중인 앱의 커뮤니케이션을 위해 해당 권한을 포함합니다.
+  
 
-## Review the build configuration
+## 빌드 구성 검토하기
 
-Review the default [Gradle build file][gradlebuild] file `build.gradle`
-located in `<app dir>/android/app` and verify the values are correct,
-especially:
+올바른 빌드 구성을 위하여 `<app dir>/android/app` 에 있는 기본 [Gradle build file][gradlebuild]  파일인 `build.gradle` 을 검토하고 올바른 값들을 포함하는지 확인하세요.
 
 * `defaultConfig`:
 
-  * `applicationId`: Specify the final, unique (Application Id)[appid]
+  * `applicationId`: 고유한 최종 (Application Id)[appid]를 지정하세요.
 
-  * `versionCode` & `versionName`: Specify the internal app version number,
-     and the version number display string. You can do this by setting
-     the `version` property in the pubspec.yaml file. Consult the version
-     information guidance in the [versions documentation][versions].
+  * `versionCode` & `versionName`: 내부 앱 버전 번호를 지정하고, 문자열 형태로 명시하세요. pubspec.yaml 파일에 `version` 속성을 설정함으로써 내부 앱 버전 번호를 문자열 형태로 지정할 수 있습니다. 버전 정보 지침에 대해서는 [버전 문서][versions]를 참조하세요.
 
-  * `minSdkVersion` & `targetSdkVersion`: Specify the minimum API level,
-     and the API level on which the app is designed to run. Consult the API
-     level section in the [versions documentation][versions] for details.
+  * `minSdkVersion` & `targetSdkVersion`: 최소 API 레벨과 개발 대상 버전으로 지정한 지정 API 레벨을 명시하세요. 자세한 내용은 [버전 문서][versions]의 API 레벨 영역을 참조하세요.
 
-## Adding a Launcher icon
+## 런처 아이콘 추가하기
 
-When a new Flutter app is created, it has a default Launcher icon. To
-customize this icon you might want to check out the [Flutter Launcher
-Icons](https://pub.dartlang.org/packages/flutter_launcher_icons) package.
+새로 생성된 Flutter 앱의 아이콘은 기본 런처 아이콘으로 설정되어있습니다. 런처 아이콘을 원하는 아이콘으로 변경하고 싶다면, [Flutter Launcher Icons]({{site.pub}}/packages/flutter_launcher_icons) package 를 확인해보세요.
 
-Alternatively, if you want to do it manually, here's how:
+package를 사용하지 않고, 런처 아이콘을 바꾸려면 다음 지시사항을 따르세요.
 
-1. Review the [Android Launcher Icons][launchericons] guidelines for icon
-   design.
+1. 아이콘 디자인을 위해 [Android Launcher Icons][launchericons] 가이드라인을 확인합니다.
 
-1. In the `<app dir>/android/app/src/main/res/` directory, place your icon files
-   in folders named using [configuration qualifiers][].
-   The default `mipmap-` folders demonstrate the correct naming convention.
+1. `<app dir>/android/app/src/main/res/` 에서 아이콘 파일을 [configuration qualifiers][]에 맞는 이름의 폴더에 넣습니다.
 
-1. In `AndroidManifest.xml`, update the [`application`][applicationtag] tag's
-   `android:icon` attribute to reference icons from the previous step (for
-   example, `<application android:icon="@mipmap/ic_launcher" ...`).
+1. `AndroidManifest.xml` 에서 [`application`][applicationtag] 태그의 `android:icon` 항목을 업데이트하여 이전 단계에서 넣은 아이콘을 가져옵니다. (예를 들어, `<application android:icon="@mipmap/ic_launcher> ...`)
 
-1. To verify the icon has been replaced, run your app using `flutter run`
-   and inspect the app icon in the Launcher.
+1. 아이콘이 변경된 것을 확인하기 위해 `flutter run` 를 통해 앱을 실행시키고 런처에서 앱 아이콘을 합니다.
 
-## Signing the app
+## 앱 서명하기
 
-To publish on the Play store, you need to give your app a digital
-signature. Use the following instructions to sign your app.
+Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 서명을 해야 합니다.
+앱에 디지털 서명을 하기 위해 다음 지시사항을 따르세요.
 
-### Create a keystore
-If you have an existing keystore, skip to the next step. If not, create one
-by running the following at the command line:
+### keystore 만들기
+이미 keystore를 가지고 있다면 다음 단계로 넘어가세요. 그렇지 않다면, 다음 명령줄 코드를 통해 keystore를 생성하세요:
 `keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key`
 
-*참고:* Keep this file private; do not check it into public source control.
+*참고:* 이 파일은 항상 개인적으로 보관하세요; 절대 공개된 저장소에 업로드 하지 마세요.
 
-*참고:* `keytool` might not be in your path. It is part of the Java JDK,
-which is installed as part of Android Studio. For the concrete path,
-run `flutter doctor -v` and see the path printed after 'Java binary at:',
-and then use that fully qualified path replacing `java` with `keytool`.
+*참고:* `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 해당 파일은 안드로이드 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 해당 파일에 대한 구체적인 경로는 명령줄에 `flutter doctor -v` 을 통하여 표시되는 'Java binary at:' 다음에 나타나는 경로에서 `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
 
-### Reference the keystore from the app
+### 앱으로부터 keystore 참조하기
 
-Create a file named `<app dir>/android/key.properties` that contains a
-reference to your keystore:
+keystore 참조에 관한 구성을 담을  `<app dir>/android/key.properties` 파일을 생성합니다:
 
 ```
 storePassword=<password from previous step>
 keyPassword=<password from previous step>
 keyAlias=key
-storeFile=<location of the key store file, e.g. /Users/<user name>/key.jks>
+storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 ```
 
-*참고:* Keep this file private; do not check it into public source control.
+*참고:* 이 파일은 항상 개인적으로 보관하세요; 절대 공개된 저장소에 업로드 하지 마세요.
 
-### Configure signing in gradle
+### gradle에서 서명 구성하기
 
-Configure signing for your app by editing the
-`<app dir>/android/app/build.gradle` file.
+앱의 서명을 구성하기 위하여 `<app dir>/android/app/build.gradle` 파일을 수정합니다.
 
-1. Replace:
+1. 다음 코드를:
 ```
    android {
 ```
-   with the keystore information from your properties file:
+   속성 파일로부터 keystore 정보를 가져올 수 있도록 변경하세요.
 ```
    def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
@@ -117,17 +88,17 @@ Configure signing for your app by editing the
    android {
 ```
 
-1. Replace:
+1. 다음 코드를:
 ```
    buildTypes {
        release {
-           // TODO: Add your own signing config for the release build.
-           // Signing with the debug keys for now, so `flutter run --release` works.
+           // TODO: release 빌드 버전을 위한 서명 구성을 추가하세요.
+           // 현재는 `flutter run --release`가 디버그용 키로 서명되어 동작합니다.
            signingConfig signingConfigs.debug
        }
    }
 ```
-   with:
+   다음과 같이 변경하세요:
 ```
    signingConfigs {
        release {
@@ -144,23 +115,20 @@ Configure signing for your app by editing the
    }
 ```
 
-Release builds of your app will now be signed automatically.
+이제 앱의 release 빌드에서는 자동으로 서명될 것 입니다.
 
 
-## Enabling Proguard
+## Proguard 사용
 
-By default, Flutter does not obfuscate or minify the Android host.
-If you intend to use third-party Java or Android libraries,
-you may want to reduce the size of the APK or protect that code from
-reverse engineering.
+기본적으로, Flutter는 안드로이드 관련 코드를 난독화하거나 축소화하지 않습니다.
+서드파티 자바 라이브러리나 안드로이드 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
 
-For information on obfuscating Dart code, see [Obfuscating Dart
-Code](https://github.com/flutter/flutter/wiki/Obfuscating-Dart-Code)
-in the [Flutter wiki](https://github.com/flutter/flutter/wiki).
+다트 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
+Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
 
-### Step 1 - Configure Proguard
+### Step 1 - Proguard 구성하기
 
-Create `/android/app/proguard-rules.pro` file and add rules listed below.
+ Proguard Rule을 구성하기 위하여 `/android/app/proguard-rules.pro` 파일을 생성하고 다음과 같은 규칙을 추가합니다.
 
 ```
 #Flutter Wrapper
@@ -172,15 +140,13 @@ Create `/android/app/proguard-rules.pro` file and add rules listed below.
 -keep class io.flutter.plugins.**  { *; }
 ```
 
-The configuration above only protects Flutter engine libraries.
-Any additional libraries (for example, Firebase) require their own
-rules to be added.
+이 설정은 Flutter 엔진 라이브러리를 보호합니다. </br>
+다른 라이브러리(예. Firebase)를 보호하기 위해서는 추가적으로 규칙을 작성해야합니다.
 
-### Step 2 - Enable obfuscation and/or minification
+### Step 2 - 난독화와 축소 사용하기
 
-Open `/android/app/build.gradle` file and locate `buildTypes` definition.
-Inside `release` configuration set `minifiyEnabled` and `useProguard` flags
-to true. You have to also point ProGuard to the file you have created in step 1.
+`/android/app/build.gradle` 파일을 열고 `buildTypes`가 정의된 부분을 찾으세요.</br>
+`release` 내부에는 `minifiyEnabled`와 `useProguard` 플래그가 true 로 지정되어 있으며, 여기에 step 1 에서 만든 Proguard 규칙 파일을 추가해야 합니다.
 
 ```
 android {
@@ -203,45 +169,40 @@ android {
 }
 ```
 
-참고: Obfuscation and minification can considerably extend compile time
-of the Android application.
+참고: 난독화와 축소 과정으로 인해 안드로이드 앱의 컴파일 시간이 크게 늘어날 수 있습니다.
 
-## Building a release APK
+## Release APK 빌드하기
 
-This section describes how to build a release APK. If you completed the
-signing steps in the previous section, the release APK will be signed.
+여기서는 Release APK를 빌드하는 방법을 소개합니다. 만약 이전 서명 구성 단계를 수행했다면, Release APK는 이미 서명되었을 것입니다.
 
-Using the command line:
+명령줄을 사용하세요:
 
-1. `cd <app dir>` (replace `<app dir>` with your application's directory).
-1. Run `flutter build apk` (`flutter build` defaults to `--release`).
+1. `cd <app dir>` (`<app dir>` 를 앱의 디렉토리로 변경하세요).
+1. Run `flutter build apk` (`flutter build` 의 기본값 옵션은 `--release` 입니다).
 
-The release APK for your app is created at
-`<app dir>/build/app/outputs/apk/release/app-release.apk`.
+이제 앱의 release APK가 `<app dir>/build/app/outputs/apk/release/app-release.apk` 에 생성되었습니다.
 
-## Installing a release APK on a device
+## 기기에 release APK 설치하기
 
-Follow these steps to install the APK built in the previous step on a
-connected Android device.
+다음 지시사항에 따라 이전 단계에서 생성한 APK를 연결된 안드로이드 기기에 설치하세요.
 
-Using the command line:
+명령줄을 사용하세요:
 
-1. Connect your Android device to your computer with a USB cable.
-1. `cd <app dir>` where `<app dir>` is your application directory.
-1. Run `flutter install` .
+1. 안드로이드 기기를 컴퓨터에 연결합니다.
+1. `cd <app dir>` (설치하려는 앱의 디렉토리입니다).
+1. `flutter install` 을 통해 설치합니다.
 
-## Publishing an APK to the Google Play Store
+## Google Play 스토어에 APK 출시하기
 
-For detailed instructions on publishing the release version of an app to the
-Google Play Store, see the [Google Play publishing documentation][play].
+Google Play 스토어 앱 출시에 대한 자세한 내용은 [Google Play 출시 문서][play]에서 확인하세요.
 
-[manifest]: http://developer.android.com/guide/topics/manifest/manifest-intro.html
-[manifesttag]: https://developer.android.com/guide/topics/manifest/manifest-element
-[appid]: https://developer.android.com/studio/build/application-id
-[permissiontag]: https://developer.android.com/guide/topics/manifest/uses-permission-element
-[applicationtag]: https://developer.android.com/guide/topics/manifest/application-element
-[gradlebuild]: https://developer.android.com/studio/build/#module-level
-[versions]: https://developer.android.com/studio/publish/versioning
-[launchericons]: https://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher
-[configuration qualifiers]: https://developer.android.com/guide/topics/resources/providing-resources#AlternativeResources
-[play]: https://developer.android.com/distribute/googleplay/start
+[manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
+[manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
+[appid]: {{site.android-dev}}/studio/build/application-id
+[permissiontag]: {{site.android-dev}}/guide/topics/manifest/uses-permission-element
+[applicationtag]: {{site.android-dev}}/guide/topics/manifest/application-element
+[gradlebuild]: {{site.android-dev}}/studio/build/#module-level
+[versions]: {{site.android-dev}}/studio/publish/versioning
+[launchericons]: {{site.android-dev}}/guide/practices/ui_guidelines/icon_design_launcher
+[configuration qualifiers]: {{site.android-dev}}/guide/topics/resources/providing-resources#AlternativeResources
+[play]: {{site.android-dev}}/distribute/googleplay/start

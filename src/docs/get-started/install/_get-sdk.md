@@ -49,7 +49,7 @@
 
 ### Flutter doctor 실행
 
-설정을 완료하는 데 필요한 플랫폼 디펜던시가 있는지 확인하기 위해 아래 명령을 실행하세요.
+설정을 완료하는 데 필요한 플랫폼 의존성이 있는지 확인하기 위해 아래 명령을 실행하세요.
 (자세한 출력을 원한다면, `-v` 플래그를 추가하세요)
 
 ```terminal
@@ -67,7 +67,7 @@ $ flutter doctor
     • Android SDK at /Users/obiwan/Library/Android/sdk
     <strong>✗ Android SDK is missing command line tools; download from https://goo.gl/XxQghQ</strong>
     • Try re-installing or updating your Android SDK,
-      visit https://flutter-io.kr/setup/#android-setup for detailed instructions.
+      visit {{site.url}}/setup/#android-setup for detailed instructions.
 </pre>
 
 다음 섹션에서는 이러한 작업을 수행하고 설치 과정을 완수하는 방법을 설명합니다.

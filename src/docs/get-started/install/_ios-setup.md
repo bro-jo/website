@@ -81,8 +81,8 @@ Flutter 앱을 실제 iOS 기기에 배포하려면 몇 가지 추가적인 도�
       위 명령 중 처음 두 명령은 libusbmuxd의 다음 릴리즈까지 일시적으로 문제를 해결하기 위해 필요합니다.
       [libusbmuxd 이슈 #46][]과 [Flutter 이슈 #22595][] 참고.
 
-      [libusbmuxd 이슈 #46]: https://github.com/libimobiledevice/libusbmuxd/issues/46#issuecomment-445502733
-      [Flutter 이슈 #22595]: https://github.com/flutter/flutter/issues/22595
+      [libusbmuxd 이슈 #46]: {{site.github}}/libimobiledevice/libusbmuxd/issues/46#issuecomment-445502733
+      [Flutter 이슈 #22595]: {{site.github}}/flutter/flutter/issues/22595
     {{site.alert.end}}
 
     명령이 실패하는 경우에는 `brew doctor`를 실행하고 지시에 따라 문제를 해결하세요.

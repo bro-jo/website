@@ -1,6 +1,6 @@
 ---
-title: 첫 번째 Flutter 앱 작성하기 - 1부
-short-title: 첫 번째 Flutter 앱 작성하기
+title: 첫 Flutter 앱 작성하기 - 1부
+short-title: 첫 Flutter 앱 작성하기
 prev:
   title: 시운전
   path: /docs/get-started/test-drive
@@ -19,15 +19,15 @@ diff2html: true
 {% endcomment -%}
 <style>pre .highlight { background-color: #dfd; }</style>
 
-첫 번째 Flutter 앱을 만드는 방법을 안내합니다.
+첫 Flutter 앱을 만드는 방법을 안내합니다.
 변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
 다트 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
 
 이 가이드는 코드랩 2부 중 1부입니다.
-[2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)는
-[Google Developers](https://codelabs.developers.google.com)에서 보실 수 있습니다.
-[1부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1) 또한
-[Google Developers](https://codelabs.developers.google.com)에서도 볼 수 있습니다.
+[2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)는
+[Google Developers]({{site.codelabs}})에서 보실 수 있습니다.
+[1부]({{site.codelabs}}/codelabs/first-flutter-app-pt1) 또한
+[Google Developers]({{site.codelabs}})에서도 볼 수 있습니다.
 
 ## 1부에서 무엇을 만드는가
 {:.no_toc}
@@ -50,7 +50,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
   * Stateful 위젯을 구현하는 방법.
   * Lazy하게 로드하는 무한 리스트를 만드는 방법.
 
-  코드랩 [2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서는
+  코드랩 [2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)에서는
   상호작용을 추가하고, 앱 테마를 수정하며, 새 화면으로 이동하는 기능(Flutter에서 _route_ 라고 불립니다)을 추가합니다.
 {{site.alert.end}}
 
@@ -74,7 +74,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 <?code-excerpt path-base="codelabs/startup_namer/step1_base"?>
 
-[첫 번째 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
+[첫 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
 간단한 템플릿 기반 Flutter 앱을 만듭니다.
 이름을 **startup_namer**로 지정합니다 (_myapp_ 대신).
 
@@ -140,7 +140,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 {:.no_toc}
 
 * 이 예제는 머터리얼 앱을 만듭니다. 
-  [머터리얼](https://material.io/guidelines/)은
+  [머터리얼]({{site.material}}/guidelines/)은
   모바일 및 웹에서 표준으로 사용되는 시각 디자인 언어입니다.
   Flutter는 다양한 머터리얼 위젯을 제공합니다. 
 * `main()` 메서드는 화살표(`=>`) 표기법을 사용합니다.
@@ -161,14 +161,14 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 이 단계에서는 
 가장 많이 사용되는 영어 단어 수천 개와 몇 가지 유틸리티 기능이 포함되어 있는
-오픈 소스 패키지인 [english_words](https://pub.dartlang.org/packages/english_words)를 이용할 것입니다.
+오픈 소스 패키지인 [english_words]({{site.pub}}/packages/english_words)를 이용할 것입니다.
 
 다른 오픈 소스 패키지와 마찬가지로, 
-[the Package site](https://pub.dartlang.org/flutter)에서
+[the Package site]({{site.pub}}/flutter)에서
 `english_words` 패키지를 찾을 수 있습니다.
 
- 1. Flutter 앱에서 디펜던시 및 asset 관리는 pubspec 파일이 담당합니다. 
-    `pubspec.yaml`의 디펜던시 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
+ 1. Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당합니다. 
+    `pubspec.yaml`의 의존성 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/pubspec.yaml" diff-u="4" from="dependencies" to="english"?>
@@ -244,7 +244,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
  5. 앱이 실행중이면, hot reload 버튼<i class="material-icons align-bottom">offline_bolt</i>을 사용하여 
     실행중인 앱을 업데이트하세요. 
     실행중인 앱에서 hot reload를 클릭할 때마다 혹은 프로젝트를 저장할 때마다, 랜덤하게 선택된 다른 단어 쌍을 볼 수 있을 것입니다.
-    왜냐하면 MaterialApp이 랜더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
+    왜냐하면 MaterialApp이 렌더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
     실행되는 build 메서드 안에서 단어 쌍을 생성하고 있기 때문입니다.
 
     {% indent %}
@@ -290,12 +290,12 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     ```
 
     `State<RandomWords>` 선언을 눈여겨보세요. 
-    `RandomWords`로 지정된 제네릭으로 [State](https://docs.flutter.io/flutter/widgets/State-class.html) 클래스를 사용하고 있습니다. 
+    `RandomWords`로 지정된 제네릭으로 [State]({{site.api}}/flutter/widgets/State-class.html) 클래스를 사용하고 있습니다. 
     대부분의 앱 로직과 상태는 여기서 유지됩니다&mdash;`RandomWords` 위젯을 위해 상태를 보관합니다.
     이 클래스에 생성된 단어 쌍이 저장됩니다.
     사용자가 스크롤함에 따라 단어 쌍이 무한히 증가하고, 
     사용자가 하트 아이콘 스위치를 눌러 
-    가장 좋아하는 단어 쌍을 지정할 수 있습니다([part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서). 
+    가장 좋아하는 단어 쌍을 지정할 수 있습니다([part 2]({{site.codelabs}}/codelabs/first-flutter-app-pt2)에서). 
 
     `RandomWordsState`는 `RandomWords` 클래스에 의존적입니다. 아래에서 추가할 것입니다.
 
@@ -401,7 +401,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 
     {{site.alert.note}}
       다트 언어에서는 식별자 앞에 밑줄을 붙이면 
-      [프라이빗 적용](https://www.dartlang.org/guides/language/language-tour)이 됩니다. 
+      [프라이빗 적용]({{site.dart-site}}/guides/language/language-tour)이 됩니다. 
     {{site.alert.end}}
 
     다음으로, `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요. 
@@ -463,7 +463,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 
  4. `RandomWordsState` 클래스에서 `build()` 메서드를 변경하여 
     단어 생성 라이브러리를 직접 호출하지 말고 `_buildSuggestions()`을 사용하도록 하세요, 
-    ([Scaffold](https://docs.flutter.io/flutter/material/Scaffold-class.html)는 
+    ([Scaffold]({{site.api}}/flutter/material/Scaffold-class.html)는 
     기본적인 머터리얼 디자인 시각 레이아웃을 구현합니다.)
     메서드의 본문을 아래 강조 표시된 코드로 교체하세요:
 
@@ -542,8 +542,8 @@ iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작�
 * Lazy한 방식 무한 스크롤 목록을 만들었습니다. 
 
 이 앱을 확장하고 싶다면, 
-[구글 개발자 코드랩](https://codelabs.developers.google.com) 사이트에서,
-[2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)를 진행하세요.
+[구글 개발자 코드랩]({{site.codelabs}}) 사이트에서,
+[2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)를 진행하세요.
 아래 기능을 추가하게 될 것입니다:
 
 * 클릭 가능한 하트 아이콘을 추가하여

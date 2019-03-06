@@ -36,6 +36,6 @@
 {% include_relative _try-hot-reload.md save_changes=save_changes %}
 
 [Main IntelliJ toolbar]: {% asset tools/android-studio/main-toolbar.png @path %}
-[AVD 관리]: https://developer.android.com/studio/run/managing-avds
-[머터리얼 컴포넌트]: https://material.io/guidelines
+[AVD 관리]: {{site.android-dev}}/studio/run/managing-avds
+[머터리얼 컴포넌트]: {{site.material}}/guidelines
 </div>

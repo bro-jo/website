@@ -40,9 +40,9 @@ Flutter의 위젯은 불변하기 때문에 가볍습니다.
 위젯이 그 자체로 뷰가 아니기에 어떤 것도 직접 그리지 않고,
 대신 UI에 대한 설명이며 내부적으로 이미 "inflate"된 실제 뷰 객체 UI의 의미론(semantics)이기 때문입니다.
 
-Flutter는 [머터리얼 컴포넌트](https://material.io/develop/flutter/) 라이브러리를 포함합니다.
-위젯은 [머터리얼 디자인 가이드라인](https://material.io/design/)을 따르고 있습니다.
-머터리얼 디자인은 [모든 플랫폼에 최적화된](https://material.io/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
+Flutter는 [머터리얼 컴포넌트]({{site.material}}/develop/flutter/) 라이브러리를 포함합니다.
+위젯은 [머터리얼 디자인 가이드라인]({{site.material}}/design/)을 따르고 있습니다.
+머터리얼 디자인은 [모든 플랫폼에 최적화된]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
 유연한 디자인 시스템입니다. 
 
 그러나 Flutter는 모든 디자인 언어를 적용할 수 있을만큼 유연하고 표현력이 우수합니다.
@@ -82,7 +82,6 @@ Flutter 프레임워크에 `State`가 변경되었다고 알려주면 위젯이 
 `Text` 위젯은 일반적인 `StatelessWidget`입니다.
 `Text` 위젯의 구현을 보면 `StatelessWidget`의 하위클래스라는 걸 알 수 있습니다.
 
-<!-- skip -->
 {% prettify dart %}
 Text(
   'I like Flutter!',
@@ -100,7 +99,6 @@ Text(
 
 예시:
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -163,7 +161,6 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 아래 예시는 여백과 함께 간단한 위젯을 배치하는 방법을 보여줍니다:
 
-<!-- skip -->
 {% prettify dart %}
   @override
   Widget build(BuildContext context) {
@@ -196,7 +193,6 @@ Flutter에서는 위젯이 불변이기 때문에 `addChild()`와 동일한 명�
 
 예시로, `FloatingActionButton`을 클릭했을 때 두 위젯을 번갈아 보여주는 방법입니다: 
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -284,7 +280,6 @@ controller에 애니메이션을 시작하도록 지시합니다.
 다음 예에서는 `FloatingActionButton`을 누르면
 위젯이 로고로 바뀌는 `FadeTransition`을 작성하는 방법을 보여줍니다.
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -367,9 +362,8 @@ Flutter는 캔버스에 그리는 일을 도와주는 2개의 클래스를 가�
 
 Flutter에 서명 그림 그리기를 구현하는 방법은 [StackOverflow][]에 있는 Collin의 답변을 참고하세요.
 
-[StackOverflow]: https://stackoverflow.com/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
+[StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -436,7 +430,6 @@ Flutter에서는
 `RaisedButton`을 상속하는 대신,
 `RaisedButton`을 감싸고 있는 CustomButton을 만들고 생성자에 label을 받게 하면 됩니다.
 
-<!-- skip -->
 {% prettify dart %}
 class CustomButton extends StatelessWidget {
   final String label;
@@ -452,7 +445,6 @@ class CustomButton extends StatelessWidget {
 
 그런 다음 다른 Flutter 위젯처럼 `CustomButton`을 사용하기만 하면 됩니다:
 
-<!-- skip -->
 {% prettify dart %}
 @override
 Widget build(BuildContext context) {
@@ -470,7 +462,7 @@ Widget build(BuildContext context) {
 엑티비티 간 이동, 그리고 다른 컴포넌트와 통신할 때입니다.
 반면, Flutter는 intent라는 개념을 가지고 있지 않습니다.
 네이티브 통합을 활용하여 intent를 사용할 수는 있습니다.
-([플러그인](https://pub.dartlang.org/packages/android_intent)을 사용)
+([플러그인]({{site.pub}}/packages/android_intent)을 사용)
 
 Flutter는 실제로 액티비티나 프레그먼트와 직접적으로 동등한 요소를 가지고 있지 않습니다.
 Flutter에서는 하나의 `Activity`안에서 `Navigator`와 `Route`를 활용하여 스크린 간 내비게이션을 합니다.
@@ -492,7 +484,6 @@ Flutter에서는 페이지 간 이동을 하는 몇 가지 방법이 있습니�
 
 아래는 Map을 지정하는 방식입니다.
 
-<!-- skip -->
 {% prettify dart %}
  void main() {
   runApp(MaterialApp(
@@ -508,14 +499,13 @@ Flutter에서는 페이지 간 이동을 하는 몇 가지 방법이 있습니�
 
 `Navigator`에 route의 이름을 `push`하여 이동할 수 있습니다. 
 
-<!-- skip -->
 {% prettify dart %}
 Navigator.of(context).pushNamed('/b');
 {% endprettify %}
 
 `Intent`의 또다른 용도는 카메라나 파일 선택 도구같은 외부 컴포넌트를 를 호출하는 것입니다.
 이 작업을 위해서는 네이티브 플랫폼 통합이 필요합니다.
-(또는 [이미 있는 플러그인](https://pub.dartlang.org/flutter/)을 활용하는 방법도 있습니다)
+(또는 [이미 있는 플러그인]({{site.pub}}/flutter/)을 활용하는 방법도 있습니다)
 
 네이티브 플랫폼 통합을 배우기 위해서는, 
 [패키지 및 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를 
@@ -536,7 +526,6 @@ Flutter가 `MethodChannel`을 이용하여 데이터를 요청할 때까지 기�
 
 먼저, `AndroidManifest.xml`에 모든 intent를 위한 intent filter를 등록하세요:
 
-<!-- skip -->
 {% prettify xml %}
 <activity
   android:name=".MainActivity"
@@ -557,7 +546,6 @@ Flutter가 `MethodChannel`을 이용하여 데이터를 요청할 때까지 기�
 그런 다음 `MainActivity`에서 intent를 처리하고, intent에 공유된 텍스트를 추출한 후 저장해둡니다.
 처리를 시작할 준비가 되면 Flutter가 플랫폼 채널을 사용해서 데이터를 요청하고, 네이티브 쪽에서 데이터가 전송됩니다.
 
-<!-- skip -->
 {% prettify java %}
 package com.example.shared;
 
@@ -570,6 +558,7 @@ import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.ActivityLifecycleListener;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
 public class MainActivity extends FlutterActivity {
@@ -610,7 +599,6 @@ public class MainActivity extends FlutterActivity {
 
 마지막으로, 위젯이 렌더링 될 때 Flutter쪽에서 데이터를 요청하도록 하세요:
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -674,41 +662,37 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 예를 들어, 아래 코드처럼 사용자가 위치를 선택할 수 있도록 location route로 이동할 수 있습니다:
 
-<!-- skip -->
 {% prettify dart %}
 Map coordinates = await Navigator.of(context).pushNamed('/location');
 {% endprettify %}
 
 그런 다음, location route 안에서, 사용자가 위치를 선택하면 결과와 함께 스택에서 `pop`을 할 수 있습니다: 
 
-<!-- skip -->
 {% prettify dart %}
 Navigator.of(context).pop({"lat":43.821757,"long":-79.226392});
 {% endprettify %}
 
-## Async UI
+## 비동기 UI
 
-### What is the equivalent of `runOnUiThread()` in Flutter?
+### Flutter에서 `runOnUiThread()`와 동일한 것은?
 
-Dart has a single-threaded execution model, with support for `Isolate`s
-(a way to run Dart code on another thread), an event loop, and
-asynchronous programming. Unless you spawn an `Isolate`, your Dart code
-runs in the main UI thread and is driven by an event loop. Flutter's event
-loop is equivalent to Android's main `Looper`&mdash;that is, the `Looper` that
-is attached to the main thread.
+다트는 단일-스레드 실행 모델을 가지고 있고,
+`Isolate`(다트 코드를 다른 스레드에서 실행하는 방법)와
+이벤트 루프, 비동기 프로그래밍을 지원합니다.
+`Isolate`를 생성하지 않는 한, 다트 코드는 메인 UI 스레드에서 실행되고 이벤트 루프에 의해 구동됩니다.
+Flutter의 이벤트 루프는 안드로이드의 메인 `Looper`, 즉  메인 스레드에 연결되어 있는 `Looper`와 동일합니다.
 
-Dart's single-threaded model doesn't mean you need to run everything as a
-blocking operation that causes the UI to freeze. Unlike Android, which
-requires you to keep the main thread free at all times, in Flutter,
-use the asynchronous facilities that the Dart language provides, such as
-`async`/`await`, to perform asynchronous work. You may be familiar with
-the `async`/`await` paradigm if you've used it in C#, Javascript, or if you
-have used Kotlin's coroutines.
+다트의 단일-스레드 모델은 모든 걸 동기로 실행하여 UI 끊김을 유발하지는 않습니다.
+항상 메인 스레드를 차단하지 말아야 하는 안드로이드와 달리,
+Flutter에서는 `async`/`await`와 같은 
+다트 언어가 제공하는 비동기 기능을 사용하여 
+비동기 작업을 수행할 수 있습니다.
+C#이나 Javascript, 또는 코틀린의 coroutine을 사용해봤다면
+`async`/`await` 패러다임에 이미 익숙할 것입니다.
 
-For example, you can run network code without causing the UI to hang by
-using `async`/`await` and letting Dart do the heavy lifting:
+예를 들어, 복잡한 부분은 다트에게 맡겨두고, 
+`async`/`await`를 활용하여 UI 끊김 없이 네트워크 코드를 실행할 수 있습니다:
 
-<!-- skip -->
 {% prettify dart %}
 loadData() async {
   String dataURL = "https://jsonplaceholder.typicode.com/posts";
@@ -719,12 +703,12 @@ loadData() async {
 }
 {% endprettify %}
 
-Once the `await`ed network call is done, update the UI by calling `setState()`,
-which triggers a rebuild of the widget sub-tree and updates the data.
+`await`했던 네트워크 요청이 완료되면, 
+위젯 서브트리를 다시 빌드하고 데이터를 업데이트하도록 
+`setState()`로 UI를 업데이트하세요.
 
-The following example loads data asynchronously and displays it in a `ListView`:
+아래는 데이터를 비동기로 받아온 후 `ListView`에 보여주는 예제입니다:   
 
-<!-- skip -->
 {% prettify dart %}
 import 'dart:convert';
 
@@ -795,29 +779,28 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-Refer to the next section for more information on doing work in the
-background, and how Flutter differs from Android.
+백그라운드에서 작업하는 방법, 그리고 Flutter가 안드로이드와 어떻게 다른지
+더 알고 싶으시면 다음 섹션을 참조하세요.
 
-### How do you move work to a background thread?
+### 백그라운드 스레드로 이동하여 작업하는 방법은? 
 
-In Android, when you want to access a network resource you would typically
-move to a background thread and do the work, as to not block the main thread,
-and avoid ANRs. For example, you may be using an `AsyncTask`, a `LiveData`,
-an `IntentService`, a `JobScheduler` job, or an RxJava pipeline with a
-scheduler that works on background threads.
+안드로이드에서는 
+메인 스레드를 차단하지 않아야 하고 애플리케이션 응답 없음(ANR)을 피해야 하기 때문에 
+보통 네트워크 리소스에 접근하기 위해서 백그라운드 스레드로 이동하여 작업해야 합니다.
+예를 들면, `AsyncTask`, `LiveData`, `IntentService`, `JobScheduler` 작업, 
+또는 백그라운드 스레드에서 작동하는 스케줄러에서 RxJava 파이프라인을 사용해야 할 것입니다.
 
-Since Flutter is single threaded and runs an event loop (like Node.js), you
-don't have to worry about thread management or spawning background threads. If
-you're doing I/O-bound work, such as disk access or a network call, then
-you can safely use `async`/`await` and you're all set. If, on the other
-hand, you need to do computationally intensive work that keeps the CPU busy,
-you want to move it to an `Isolate` to avoid blocking the event loop, like
-you would keep _any_ sort of work out of the main thread in Android.
+Flutter는 (Node.js 처럼) 단일 스레드에서 동작하고 이벤트 루프를 실행하므로, 
+스레드 관리나 백그라운드 스레드 생성을 걱정할 필요가 없습니다.
+저장 장치 접근이나 네트워크 요청 같은 I/O 위주의 작업을 수행하려면,
+`async`/`await`를 사용해 안전하게 처리할 수 있고, 그렇게만 하면 모든 준비는 끝입니다.
+반대로, CPU를 계속 많이 사용하는 계산 집약적인 작업을 해야 한다면,
+안드로이드의 메인 스레드에서 _어떤_ 종류의 작업도 하지 않는 것처럼
+이벤트 루프가 차단되는 것을 막기 위해 `독립적인(Isolate)` 곳에서 작업을 수행하고 싶을 겁니다.
 
-For I/O-bound work, declare the function as an `async` function,
-and `await` on long-running tasks inside the function:
+I/O 위주의 작업의 경우, 함수를 `async` 함수로 선언하고,
+함수 안에서 오래 걸리는 작업을 `await` 하세요:
 
-<!-- skip -->
 {% prettify dart %}
 loadData() async {
   String dataURL = "https://jsonplaceholder.typicode.com/posts";
@@ -828,28 +811,24 @@ loadData() async {
 }
 {% endprettify %}
 
-This is how you would typically do network or database calls, which are both
-I/O operations.
+이것은 I/O 작업인 네트워크 요청이나 데이터베이스 요청을 할 때 일반적으로 사용하는 방법입니다.
 
-On Android, when you extend `AsyncTask`, you typically override 3 methods,
-`onPreExecute()`, `doInBackground()` and `onPostExecute()`. There is no
-equivalent in Flutter, since you `await` on a long running function, and
-Dart's event loop takes care of the rest.
+안드로이드에서는 `AsyncTask`를 상속받으면, 
+보통 `onPreExecute()`, `doInBackground()`, `onPostExecute()` 3개의 메서드를 오버라이드 해야 합니다.
+Flutter에는 이런 메서드가 없습니다.
+수행 시간이 긴 함수를 `await`하면 다트의 이벤트 루프가 나머지를 처리해주기 때문입니다. 
 
-However, there are times when you might be processing a large amount of data and
-your UI hangs. In Flutter, use `Isolate`s to take advantage of
-multiple CPU cores to do long-running or computationally intensive tasks.
+그러나, 너무 많은 데이터를 처리할 때는 UI에 정체 현상이 일어날 수 있습니다.
+Flutter에서는 긴 작업이나 계산 집약적인 작업을 할 때
+여러 개의 CPU 코어를 활용하기 위해 `Isolate`를 사용합니다.
 
-Isolates are separate execution threads that do not share any memory
-with the main execution memory heap. This means you can’t access variables from
-the main thread, or update your UI by calling `setState()`. Unlike Android threads,
-Isolates are true to their name, and cannot share memory (in the form of static fields,
-for example).
+Isolate는 메인 메모리 힙과 메모리를 전혀 공유하지 않는 별도의 실행 스레드입니다.
+`setState()`를 호출하여 UI를 업데이트할 수 없고, 메인 스레드에서 변수에 접근할 수 없다는 뜻입니다.
+안드로이드의 스레드와 다르게, Isolate는 이름에서 파악할 수 있듯이 메모리를 공유할 수 없습니다 (예를 들면, 정적 필드 형태로).
 
-The following example shows, in a simple isolate, how to share data back to
-the main thread to update the UI.
+아래 간단한 Isolate 예시는
+메인 스레드로 데이터를 다시 공유하여 UI를 업데이트하는 방법을 보여줍니다. 
 
-<!-- skip -->
 {% prettify dart %}
 loadData() async {
   ReceivePort receivePort = ReceivePort();
@@ -891,11 +870,11 @@ Future sendReceive(SendPort port, msg) {
 }
 {% endprettify %}
 
-Here, `dataLoader()` is the `Isolate` that runs in its own separate execution thread.
-In the isolate you can perform more CPU intensive processing (parsing a big JSON, for
-example), or perform computationally intensive math, such as encryption or signal processing.
+여기서, `dataLoader()`는 별도의 실행 스레드에서 실행되는 `Isolate`입니다.
+Isolate에서 더 CPU 집약적인 작업(예를 들면, 아주 큰 JSON을 파싱하는), 
+또는 암호화나 신호 처리 같은 계산 집약적인 작업을 수행할 수 있습니다. 
 
-You can run the full example below:
+아래 실행할 수 있는 전체 예제가 있습니다:
 
 {% prettify dart %}
 import 'dart:convert';
@@ -1018,27 +997,24 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### What is the equivalent of OkHttp on Flutter?
+### Flutter에서 OkHttp와 동일한 것은?
 
-Making a network call in Flutter is easy when you use the popular
-[`http` package](https://pub.dartlang.org/packages/http).
+널리 사용되는 [`http` 패키지](https://pub.dartlang.org/packages/http)를 사용하면 
+Flutter에서 네트워크 요청을 쉽게 할 수 있습니다.
 
-While the http package doesn't have every feature found in OkHttp,
-it abstracts away much of the networking that you would normally implement
-yourself, making it a simple way to make network calls.
+OkHttp의 모든 기능이 http 패키지에 있지는 않지만,
+일반적으로 구현할 수 있는 네트워킹의 많은 부분이 추상화되어 있어, 네트워크 호출을 쉽게 수행할 수 있습니다.
 
-To use the `http` package, add it to your dependencies in `pubspec.yaml`:
+`http` 패키지를 사용하기 위해, `pubspec.yaml`에 의존성를 추가하세요:
 
-<!-- skip -->
 {% prettify yaml %}
 dependencies:
   ...
   http: ^0.11.3+16
 {% endprettify %}
 
-To make a network call, call `await` on the `async` function `http.get()`:
+네트워크를 호출하기 위해 `async` 함수인 `http.get()`을 `await` 하세요:
 
-<!-- skip -->
 {% prettify dart %}
 import 'dart:convert';
 
@@ -1055,22 +1031,22 @@ import 'package:http/http.dart' as http;
 }
 {% endprettify %}
 
-### How do I show the progress for a long-running task?
+### 시간이 오래 걸리는 작업을 할 때 어떻게 진행 상태를 표시할 수 있을까요?
 
-In Android you would typically show a `ProgressBar` view in your UI while
-executing a long running task on a background thread.
+안드로이드에서는 보통
+백그라운드 스레드에서 긴 작업을 수행하는 동안
+UI에 `ProgressBar` 뷰를 표시합니다.
 
-In Flutter, use a `ProgressIndicator` widget.
-Show the progress programmatically by controlling when it's rendered
-through a boolean flag. Tell Flutter to update its state before your
-long-running task starts, and hide it after it ends.
+Flutter에서는 `ProgressIndicator` 위젯을 사용합니다.
+렌더링 되는 시점을 boolean으로 제어하여 진행 상태를 표시하세요.
+긴 작업이 시작되기 전에 Flutter에게 위젯의 상태를 변경해야 한다고 알려주고, 
+작업이 끝나면 위젯을 숨기세요. 
 
-In the following example, the build function is separated into three different
-functions. If `showLoadingDialog()` is `true` (when `widgets.length == 0`),
-then render the `ProgressIndicator`. Otherwise, render the
-`ListView` with the data returned from a network call.
+아래 예시에서는 빌드 함수를 3개로 분리합니다.
+`showLoadingDialog()`가 `true` 이면 (`widgets.length == 0`일 때),
+`ProgressIndicator`를 그립니다.
+그렇지 않은 상황에서는 네트워크 요청을 통해 얻은 데이터를 활용하여 `ListView`를 그립니다.
 
-<!-- skip -->
 {% prettify dart %}
 import 'dart:convert';
 
@@ -1155,24 +1131,23 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-## Project structure & resources
+## 프로젝트 구조 & 자원
 
-### Where do I store my resolution-dependent image files?
+### 해상도별 이미지 파일은 어디에 저장하나요?
 
-While Android treats resources and assets as distinct items, Flutter apps have
-only assets. All resources that would live in the `res/drawable-*`
-folders on Android, are placed in an assets folder for Flutter.
+안드로이드는 리소스와 asset을 별개의 항목으로 다루지만, Flutter 앱은 asset만 가지고 있습니다.
+안드로이드의 `res/drawable-*` 폴더에 있는 모든 리소스는 Flutter의 assets 폴더에 저장됩니다. 
 
-Flutter follows a simple density-based format like iOS. Assets might be `1.0x`,
-`2.0x`, `3.0x`, or any other multiplier. Flutter doesn't have `dp`s but there
-are logical pixels, which are basically the same as device-independent pixels.
-The so-called
-[`devicePixelRatio`](https://docs.flutter.io/flutter/dart-ui/Window/devicePixelRatio.html)
-expresses the ratio of physical pixels in a single logical pixel.
+Flutter는 iOS처럼 단순한 해상도 기반 형식을 사용합니다. 
+`1.0x`, `2.0x`, `3.0x`, 혹은 다른 배율의 asset이 있을 수 있습니다.
+Flutter는 `dp`를 사용하지 않지만, 기본적으로 장비 독립적인 픽셀과 동일한 논리적 픽셀을 사용합니다.
+이른바
+[`devicePixelRatio`]({{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html)
+는 하나의 논리적 픽셀에서 물리적 픽셀의 비율을 나타냅니다. 
 
-The equivalent to Android's density buckets are:
+안드로이드의 해상도 단위와 비교하면 아래와 같습니다:
 
- Android density qualifier | Flutter pixel ratio
+ 안드로이드 해상도 단위 | Flutter 픽셀 비율
  --- | ---
  `ldpi` | `0.75x`
  `mdpi` | `1.0x`
@@ -1181,29 +1156,26 @@ The equivalent to Android's density buckets are:
  `xxhdpi` | `3.0x`
  `xxxhdpi` | `4.0x`
 
-Assets are located in any arbitrary folder&mdash;Flutter has no
-predefined folder structure. You declare the assets (with location) in
-the `pubspec.yaml` file, and Flutter picks them up.
 
-Note that before Flutter 1.0 beta 2, assets defined in Flutter were not
-accessible from the native side, and vice versa, native assets and resources
-weren’t available to Flutter, as they lived in separate folders.
+어느 곳에나 asset 폴더를 만들 수 있습니다. Flutter는 미리 정의된 폴더 구조가 없습니다.
+`pubspec.yaml` 파일에 asset을 (위치와 함께) 선언하면, Flutter가 추출해갑니다.
 
-As of Flutter beta 2, assets are stored in the native asset folder,
-and are accessed on the native side using Android's `AssetManager`:
+Flutter 1.0 베타 2 이전에는 Flutter 안에 정의된 asset을 네이티브 쪽에서 접근할 수 없었으며, 
+그 반대의 경우에도 분리된 폴더에 있기 때문에 네이티브 asset과 리소스에 Flutter가 접근할 수 없었습니다.
 
-<!-- skip -->
+Flutter 베타 2부터는 asset이 네이티브 asset 폴더에 저장되고, 
+안드로이드의 `AssetManager`를 사용하여 네이티브 쪽에서 asset에 접근할 수 있습니다:
+
 {% prettify kotlin %}
 val flutterAssetStream = assetManager.open("flutter_assets/assets/my_flutter_asset.png")
 {% endprettify %}
 
-As of Flutter beta 2, Flutter still cannot access native resources, nor it can
-access native assets.
+Flutter 베타 2에서도 Flutter가 네이티브 리소스와 네이티브 asset에 접근할 수는 없습니다. 
 
-To add a new image asset called `my_icon.png` to our Flutter project, for example,
-and deciding that it should live in a folder we arbitrarily called `images`, you
-would put the base image (1.0x) in the `images` folder, and all the other
-variants in sub-folders called with the appropriate ratio multiplier:
+예를 들어, `my_icon.png`라는 새로운 이미지 asset을 새로운 Flutter 프로젝트에 추가하기 위해,
+임의로 `images`라는 폴더에 담아야 한다고 정하면,
+기본 이미지 (1.0x)를 `images` 폴더에 넣고,
+적합한 배율을 폴더 이름으로 지정하여 하위 폴더에 다른 변형 이미지들을 넣을 수 있습니다:
 
 ```
 images/my_icon.png       // Base: 1.0x image
@@ -1211,24 +1183,21 @@ images/2.0x/my_icon.png  // 2.0x image
 images/3.0x/my_icon.png  // 3.0x image
 ```
 
-Next, you'll need to declare these images in your `pubspec.yaml` file:
+다음으로 `pubspec.yaml`에 이 이미지들을 선언해야 합니다:
 
-<!-- skip -->
 {% prettify yaml %}
 assets:
  - images/my_icon.jpeg
 {% endprettify %}
 
-You can then access your images using `AssetImage`:
+그러면 이제 `AssetImage`를 사용하여 이미지에 접근할 수 있습니다:
 
-<!-- skip -->
 {% prettify dart %}
 return AssetImage("images/a_dot_burr.jpeg");
 {% endprettify %}
 
-or directly in an `Image` widget:
+혹은 바로 `Image` 위젯을 사용할 수도 있습니다:
 
-<!-- skip -->
 {% prettify dart %}
 @override
 Widget build(BuildContext context) {
@@ -1242,7 +1211,6 @@ Flutter currently doesn't have a dedicated resources-like system for strings.
 At the moment, the best practice is to hold your copy text in a class as
 static fields and accessing them from there. For example:
 
-<!-- skip -->
 {% prettify dart %}
 class Strings {
   static String welcomeMessage = "Welcome To Flutter";
@@ -1251,7 +1219,6 @@ class Strings {
 
 Then in your code, you can access your strings as such:
 
-<!-- skip -->
 {% prettify dart %}
 Text(Strings.welcomeMessage)
 {% endprettify %}
@@ -1260,7 +1227,7 @@ Flutter has basic support for accessibility on Android, though this feature is
 a work in progress.
 
 Flutter developers are encouraged to use the [intl
-package](https://pub.dartlang.org/packages/intl) for internationalization and
+package]({{site.pub}}/packages/intl) for internationalization and
 localization.
 
 ### What is the equivalent of a Gradle file? How do I add dependencies?
@@ -1274,7 +1241,7 @@ While there are Gradle files under the `android` folder in your Flutter project,
 only use these if you are adding native dependencies needed for
 per-platform integration. In general, use `pubspec.yaml` to declare
 external dependencies to use in Flutter. A good place to find Flutter packages is
-[Pub](https://pub.dartlang.org/flutter/packages/).
+[Pub]({{site.pub}}/flutter/packages/).
 
 ## Activities and fragments
 
@@ -1286,10 +1253,10 @@ are a way to modularize your code, compose sophisticated user interfaces for
 larger screens, and help scale your application UI. In Flutter, both of these
 concepts fall under the umbrella of `Widget`s.
 
-To 더 알아보기 about the UI for building Activities and Fragements, see
+To learn more about the UI for building Activities and Fragements, see
 the community-contributed medium article,
 [Flutter For Android Developers : How to design an Activity UI in
-Flutter](https://medium.com/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48).
+Flutter]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48).
 
 As mentioned in the [Intents](#what-is-the-equivalent-of-an-intent-in-flutter)
 section, screens in Flutter are represented by `Widget`s since everything is
@@ -1322,7 +1289,7 @@ The observable lifecycle events are:
 For more details on the meaning of these states, see the
 [`AppLifecycleStatus` documentation][].
 
-[`AppLifecycleStatus` documentation]: https://docs.flutter.io/flutter/dart-ui/AppLifecycleState-class.html
+[`AppLifecycleStatus` documentation]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
 
 As you might have noticed, only a small minority of the Activity lifecycle events
 are available; while `FlutterActivity` does capture almost all the activity lifecycle
@@ -1334,7 +1301,6 @@ native resources, you should likely be doing it from the native side, at any rat
 
 Here's an example of how to observe the lifecycle status of the containing activity:
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/widgets.dart';
 
@@ -1394,7 +1360,6 @@ If you notice the two code samples are identical with the exception of the
 exploited to develop rich layouts that can change overtime with the same
 children.
 
-<!-- skip -->
 {% prettify dart %}
   @override
   Widget build(BuildContext context) {
@@ -1410,7 +1375,6 @@ children.
   }
 {% endprettify %}
 
-<!-- skip -->
 {% prettify dart %}
   @override
   Widget build(BuildContext context) {
@@ -1428,7 +1392,7 @@ children.
 
 To 더 알아보기 about building linear layouts, see the community contributed medium
 article [Flutter For Android Developers : How to design LinearLayout in
-Flutter?](https://medium.com/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a).
+Flutter?]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a).
 
 ### What is the equivalent of a RelativeLayout?
 
@@ -1441,7 +1405,7 @@ constructors on how the children are laid out relative to the parent.
 
 For a good example of building a RelativeLayout in Flutter, see Collin's
 answer on
-[StackOverflow](https://stackoverflow.com/questions/44396075/equivalent-of-relativelayout-in-flutter).
+[StackOverflow]({{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter).
 
 ### What is the equivalent of a ScrollView?
 
@@ -1452,7 +1416,6 @@ In Flutter, the easiest way to do this is using the ListView widget. This might
 seem like overkill coming from Android, but in Flutter a ListView widget is
 both a ScrollView and an Android ListView.
 
-<!-- skip -->
 {% prettify dart %}
   @override
   Widget build(BuildContext context) {
@@ -1569,7 +1532,6 @@ Using the GestureDetector, you can listen to a wide range of Gestures such as:
 The following example shows a `GestureDetector` that rotates the Flutter logo
 on a double tap:
 
-<!-- skip -->
 {% prettify dart %}
 AnimationController controller;
 CurvedAnimation curve;
@@ -1619,7 +1581,6 @@ Due to Flutter's immutable widget pattern, you pass a List of
 Widgets to your ListView, and Flutter takes care of making sure
 that scrolling is fast and smooth.
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -1675,7 +1636,6 @@ In Android, the ListView has a method to find out which item was clicked
 'onItemClickListener'.
 In Flutter, use the touch handling provided by the passed-in widgets.
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -1748,7 +1708,6 @@ For a simple way to update your `ListView`, create a new `List` inside of
 While this approach is simple, it is not recommended for large data sets,
 as shown in the next example.
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -1821,7 +1780,6 @@ List or a List with very large amounts of data. This is essentially
 the equivalent of RecyclerView on Android, which automatically
 recycles list elements for you:
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -1911,7 +1869,6 @@ pass it into the FontFamily param for your TextView.
 In Flutter, place the font file in a folder and reference it in the
 `pubspec.yaml` file, similar to how you import images.
 
-<!-- skip -->
 {% prettify yaml %}
 fonts:
    - family: MyCustomFont
@@ -1922,7 +1879,6 @@ fonts:
 
 Then assign the font to your `Text` widget:
 
-<!-- skip -->
 {% prettify dart %}
 @override
 Widget build(BuildContext context) {
@@ -1973,7 +1929,6 @@ In Flutter, you can easily show a "hint" or a placeholder text for your input by
 adding an InputDecoration object to the decoration constructor parameter for
 the Text Widget.
 
-<!-- skip -->
 {% prettify dart %}
 body: Center(
   child: TextField(
@@ -1991,7 +1946,6 @@ However, you don't want to start off by showing an error.
 Instead, when the user has entered invalid data,
 update the state, and pass a new `InputDecoration` object.
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 
@@ -2066,32 +2020,32 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 ### How do I access the GPS sensor?
 
-Use the [`geolocator`](https://pub.dartlang.org/packages/geolocator) community plugin.
+Use the [`geolocator`]({{site.pub}}/packages/geolocator) community plugin.
 
 ### How do I access the camera?
 
-The [`image_picker`](https://pub.dartlang.org/packages/image_picker) plugin is popular
+The [`image_picker`]({{site.pub}}/packages/image_picker) plugin is popular
 for accessing the camera.
 
 ### How do I log in with Facebook?
 
 To Log in with Facebook, use the
-[`flutter_facebook_login`](https://pub.dartlang.org/packages/flutter_facebook_login) community plugin.
+[`flutter_facebook_login`]({{site.pub}}/packages/flutter_facebook_login) community plugin.
 
 ### How do I use Firebase features?
 
 Most Firebase functions are covered by
-[first party plugins](https://pub.dartlang.org/flutter/packages?q=firebase).
+[first party plugins]({{site.pub}}/flutter/packages?q=firebase).
 These plugins are first-party integrations, maintained by the Flutter team:
 
- * [`firebase_admob`](https://pub.dartlang.org/packages/firebase_admob) for Firebase AdMob
- * [`firebase_analytics`](https://pub.dartlang.org/packages/firebase_analytics) for Firebase Analytics
- * [`firebase_auth`](https://pub.dartlang.org/packages/firebase_auth) for Firebase Auth
- * [`firebase_database`](https://pub.dartlang.org/packages/firebase_database) for Firebase RTDB
- * [`firebase_storage`](https://pub.dartlang.org/packages/firebase_storage) for Firebase Cloud Storage
- * [`firebase_messaging`](https://pub.dartlang.org/packages/firebase_messaging) for Firebase Messaging (FCM)
- * [`flutter_firebase_ui`](https://pub.dartlang.org/packages/flutter_firebase_ui) for quick Firebase Auth integrations (Facebook, Google, Twitter and email)
- * [`cloud_firestore`](https://pub.dartlang.org/packages/cloud_firestore) for Firebase Cloud Firestore
+ * [`firebase_admob`]({{site.pub}}/packages/firebase_admob) for Firebase AdMob
+ * [`firebase_analytics`]({{site.pub}}/packages/firebase_analytics) for Firebase Analytics
+ * [`firebase_auth`]({{site.pub}}/packages/firebase_auth) for Firebase Auth
+ * [`firebase_database`]({{site.pub}}/packages/firebase_database) for Firebase RTDB
+ * [`firebase_storage`]({{site.pub}}/packages/firebase_storage) for Firebase Cloud Storage
+ * [`firebase_messaging`]({{site.pub}}/packages/firebase_messaging) for Firebase Messaging (FCM)
+ * [`flutter_firebase_ui`]({{site.pub}}/packages/flutter_firebase_ui) for quick Firebase Auth integrations (Facebook, Google, Twitter and email)
+ * [`cloud_firestore`]({{site.pub}}/packages/cloud_firestore) for Firebase Cloud Firestore
 
 You can also find some third-party Firebase plugins on Pub that cover areas
 not directly covered by the first-party plugins.
@@ -2142,7 +2096,6 @@ To customize the colors and styles of any child components, pass a
 `ThemeData` object to the `MaterialApp` widget. For example, in the code below,
 the primary swatch is set to blue and text selection color is red.
 
-<!-- skip -->
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
   @override
@@ -2168,11 +2121,10 @@ In Android, you can store a small collection of key-value pairs using
 the SharedPreferences API.
 
 In Flutter, access this functionality using the
-[Shared_Preferences plugin](https://pub.dartlang.org/packages/shared_preferences).
+[Shared_Preferences plugin]({{site.pub}}/packages/shared_preferences).
 This plugin wraps the functionality of both Shared Preferences and
 NSUserDefaults (the iOS equivalent).
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -2207,7 +2159,7 @@ In Android, you use SQLite to store structured data that you can query
 using SQL.
 
 In Flutter, access this functionality using the
-[SQFlite](https://pub.dartlang.org/packages/sqflite) plugin.
+[SQFlite]({{site.pub}}/packages/sqflite) plugin.
 
 ## Notifications
 
@@ -2217,8 +2169,8 @@ In Android, you use Firebase Cloud Messaging to setup push
 notifications for your app.
 
 In Flutter, access this functionality using the
-[Firebase_Messaging](https://github.com/flutter/plugins/tree/master/packages/firebase_messaging)
+[Firebase_Messaging]({{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging)
 plugin.
 For more information on using the Firebase Cloud Messaging API, see the
-[`firebase_messaging`](https://pub.dartlang.org/packages/firebase_messaging)
+[`firebase_messaging`]({{site.pub}}/packages/firebase_messaging)
 plugin documentation.

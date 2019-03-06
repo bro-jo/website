@@ -32,7 +32,7 @@
 {% include_relative _try-hot-reload.md save_changes=save_changes %}
 
 [설치]: /docs/get-started/install
-[머터리얼 컴포넌트]: https://material.io/guidelines
+[머터리얼 컴포넌트]: {{site.material}}/guidelines
 [Flutter 기기간 빠른 전환]: https://dartcode.org/docs/quickly-switching-between-flutter-devices
 [status bar]: {% asset tools/vs-code/device_status_bar.png @path %}
 

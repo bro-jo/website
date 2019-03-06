@@ -228,7 +228,6 @@ dev_dependencies:
 
 **user.dart**
 
-<!-- skip -->
 {% prettify dart %}
 import 'package:json_annotation/json_annotation.dart';
 

@@ -31,7 +31,7 @@
 
 ### `Flutter doctor` 실행
 
-콘솔에서 Flutter 디렉토리(상단에서 확인)로 이동한 후 설정을 완료하는 데 필요한 플랫폼 디펜던시가 있는지 확인하기 위해 아래 명령을 실행하세요:
+콘솔에서 Flutter 디렉토리(상단에서 확인)로 이동한 후 설정을 완료하는 데 필요한 플랫폼 의존성이 있는지 확인하기 위해 아래 명령을 실행하세요:
 
 ```console
 C:\src\flutter>flutter doctor
@@ -47,7 +47,7 @@ C:\src\flutter>flutter doctor
     • Android SDK at D:\Android\sdk
     <strong>✗ Android SDK is missing command line tools; download from https://goo.gl/XxQghQ</strong>
     • Try re-installing or updating your Android SDK,
-      visit https://flutter-io.kr/setup/#android-setup for detailed instructions.
+      visit {{site.url}}/setup/#android-setup for detailed instructions.
 </pre>
 
 다음 섹션에서는 이러한 작업을 수행하고 설치 과정을 완수하는 방법을 설명합니다.

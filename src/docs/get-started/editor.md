@@ -35,7 +35,7 @@ toc: false
 
 안드로이드 스튜디오는 Flutter에 맞는 완벽한 통합 IDE 경험을 제공합니다.
 
-* [안드로이드 스튜디오](https://developer.android.com/studio), 3.0 이상 버전
+* [안드로이드 스튜디오]({{site.android-dev}}/studio), 3.0 이상 버전
 
 또는, IntelliJ를 사용할 수도 있습니다:
 
@@ -71,6 +71,7 @@ VS Code는 Flutter 앱 실행 및 디버그를 지원하는 가벼운 에디터�
  1. 확장 검색 필드에서 "flutter"를 입력하고, 리스트에서 **Flutter**를 선택한 뒤, **Install**을 클릭하세요.
     이렇게하면 필수 다트 플러그인도 함께 설치됩니다.
  1. VS Code를 다시 로드하기 위해 **Reload to Activate**를 클릭하세요.
+ 1. **Reload to Activate**을 눌러 VS Code를 다시 시작하세요.
 
 ## Flutter Doctor로 설정 확인
 
