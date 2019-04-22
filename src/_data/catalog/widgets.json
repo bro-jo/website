@@ -248,7 +248,7 @@
   {
     "name": "PopupMenuButton",
     "sample": "PopupMenuButton",
-    "description": "Displays a menu when pressed and calls onSelected when the menu is dismissed because an item was selected.",
+    "description": " Displays a menu when pressed and calls onSelected when the menu is dismissed because an item was selected.",
     "categories": [],
     "subcategories": [
       "Buttons"
@@ -258,7 +258,7 @@
   },
   {
     "name": "ButtonBar",
-    "description": "A horizontal arrangement of buttons.",
+    "description": "버튼들의 수평 배치입니다.",
     "categories": [],
     "subcategories": [
       "Buttons"
@@ -268,7 +268,7 @@
   },
   {
     "name": "TextField",
-    "description": "Touching a text field places the cursor and displays the keyboard. The TextField widget implements this component.",
+    "description": " Touching a text field places the cursor and displays the keyboard. The TextField widget implements this component.",
     "categories": [],
     "subcategories": [
       "Input and selections"
