@@ -730,25 +730,26 @@ Flutter에서는 UI를 만들 때 현재 상태와 설정에 따라 어떻게 �
 
 ## Views
 
-### What is the equivalent of the `View` container?
+### `View` 컨테이너와 동일한 것은?
 
-In React Native, `View` is a container that supports layout with `Flexbox`,
-style, touch handling, and accessibility controls.
+React Native에서는 `View`가 컨테이너이고, `Flexbox`를 이용한 레이아웃, 
+스타일, 터치 핸들링, 접근성 제어를 지원합니다.
 
-In Flutter, you can use the core layout widgets in the Widgets library, such
-as  [Container]({{site.api}}/flutter/widgets/Container-class.html),
+Flutter에서는 
+[Container]({{site.api}}/flutter/widgets/Container-class.html)나
 [Column]({{site.api}}/flutter/widgets/Column-class.html),
 [Row]({{site.api}}/flutter/widgets/Row-class.html),
-and [Center]({{site.api}}/flutter/widgets/Center-class.html).
+[Center]({{site.api}}/flutter/widgets/Center-class.html) 같은
+위젯 라이브러리의 핵심 레이아웃 위젯을 사용할 수 있습니다.
 
-For more information, see the [Layout Widgets](/docs/development/ui/widgets/layout) catalog.
+더 많은 정보를 원하시면, [레이아웃 위젯](/docs/development/ui/widgets/layout) 카탈로그를 참조하세요.
 
-### What is the equivalent of `FlatList` or `SectionList`?
+### `FlatList`나 `SectionList`와 동일한 것은?
 
-A `List` is a scrollable list of components arranged vertically.
+`List`는 수직으로 배열된 구성 요소의 스크롤 가능한 목록입니다.
 
-In React Native, `FlatList` or `SectionList` are used to render simple or
-sectioned lists.
+React Native에서는 `FlatList` 혹은 `SectionList`를 사용하여 
+단순 혹은 섹션 목록을 그립니다.
 
 ```js
 // React Native
@@ -758,13 +759,13 @@ sectioned lists.
 />
 ```
 
-[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-is Flutter's most commonly used scrolling widget. The default constructor
-takes an explicit list of children.
-[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-is most appropriate for a small number of widgets. For a large or infinite list,
-use `ListView.builder`, which builds its children on demand and only builds
-those children that are visible.
+[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는 
+가장 많이 사용되는 스크롤 위젯입니다.
+`ListView`는 기본 생성자를 통해 명시적으로 자식 목록을 받습니다. 
+[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는
+목록의 수가 적은 경우에 가장 적합합니다.
+큰 목록 혹은 무한스크롤 목록을 위해서는, `ListView.builder`를 사용하세요. 
+자식들을 필요할 때만 빌드하고, 자식들이 화면에 나타내야 할 자식들만 빌드합니다. 
 
 
 <!-- skip -->
@@ -783,13 +784,13 @@ ListView.builder(
 
 {% include android-ios-figure-pair.md image="react-native/flatlist.gif" alt="Flat list" class="border" %}
 
-To learn how to implement an infinite scrolling list, see the
-[Write Your First Flutter App,
-Part 1]({{site.codelabs}}/codelabs/first-flutter-app-pt1) codelab.
+무한 스크롤을 만드는 방법을 배우고 싶다면, 
+[첫 Flutter 앱 만들기, part 1]({{site.codelabs}}/codelabs/first-flutter-app-pt1) 코드랩을
+참조하세요.
 
-### How do I use a Canvas to draw or paint?
+### Canvas를 사용하여 그리거나 색을 입히는 방법은?
 
-In React Native, canvas components aren't present so third party libraries like `react-native-canvas` are used.
+React Native에서는 캔버스 컴포넌트가 없기 때문에, `react-native-canvas` 같은 서드 파티 라이브러리를 사용합니다. 
 
 ```js
 // React Native
@@ -810,15 +811,15 @@ render() {
   );
 }
 ```
-In Flutter, you can use the
-[`CustomPaint`]({{site.api}}/flutter/widgets/CustomPaint-class.html)
-and [`CustomPainter`]({{site.api}}/flutter/rendering/CustomPainter-class.html)
-classes to draw to the canvas.
+Flutter에서는 
+[`CustomPaint`]({{site.api}}/flutter/widgets/CustomPaint-class.html)와
+[`CustomPainter`]({{site.api}}/flutter/rendering/CustomPainter-class.html) 클래스를
+사용하여 캔버스에 그릴 수 있습니다.
 
-The following example shows how to draw during the paint phase using the
-`CustomPaint` widget. It implements the abstract class, CustomPainter,
-and passes it to CustomPaint's painter property. CustomPaint subclasses
-must implement the `paint` and `shouldRepaint` methods.
+아래 예시는 `CustomPaint` 위젯을 사용해서 페인트 단계에서 그리는 방법을 보여줍니다.
+추상 클래스인 CustomPainter를 구현하고, 
+이를 CustomPaint의 painter 속성에 전달합니다.
+CustomPaint 서브 클래스는 `paint`와 `shouldRepaint`를 꼭 구현해야 합니다.
 
 <!-- skip -->
 ```dart
