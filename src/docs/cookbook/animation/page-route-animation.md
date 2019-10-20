@@ -1,47 +1,47 @@
 ---
-title: Animate a page route transition
+title: 페이지 route 전환 애니메이션
 next:
-  title: Animate a widget using a physics simulation
+  title: 물리 시뮬레이션을 사용한 위젯 애니메이션
   path: /docs/cookbook/animation/physics-simulation
 ---
 
-A design language, such as Material, defines standard behaviors when
-transitioning between routes (or screens). Sometimes, though, a custom
-transition between screens can make an app more unique. To help,
-[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)
-provides an
-[Animation]({{site.api}}/flutter/animation/Animation-class.html)
-object. This `Animation` can be used with
-[Tween]({{site.api}}/flutter/animation/Tween-class.html) and
-[Curve]({{site.api}}/flutter/animation/Curve-class.html) objects to
-customize the transition animation. This recipe shows how to transition between
-routes by animating the new route into view from the bottom of the screen.
+머티리얼과 같은 디자인 언어는 routes (또는 스크린) 간 전환을 할 때  
+일반적인 행동을 정의합니다. 그럼에도 가끔은 화면 전환을 커스터마이징해서 더 유니크한 
+앱을 만들 수 있습니다. 이를 돕기 위해  
+[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)가
+[Animation]({{site.api}}/flutter/animation/Animation-class.html) 객체를
+제공합니다. 이 `Animation`은 
+[Tween]({{site.api}}/flutter/animation/Tween-class.html),
+[Curve]({{site.api}}/flutter/animation/Curve-class.html) 객체와 함께 쓰일 수 있고,
+이를 통해 전환 애니메이션을 커스터마이징 할 수 있습니다.
+이 문서는 화면 아래부터 새로운 route로 진입하는 애니메이션을 사용하여 
+routes 간 전환을 하는 방법을 보여줍니다.
 
-To create a custom page route transition, this recipe uses the following steps:
+커스텀 화면 전환을 만들기 위해, 이 문서는 아래와 같은 단계를 따릅니다:
 
-1. Set up a PageRouteBuilder
-2. Create a `Tween`
-3. Add an `AnimatedWidget`
-4. Use a `CurveTween`
-5. Combine the two `Tween`s
+1. PageRouteBuilder 설정
+2. `Tween` 생성
+3. `AnimatedWidget` 추가 
+4. `CurveTween` 사용
+5. 두 개의 `Tween` 조합
 
-## 1. Set up a PageRouteBuilder
+## 1. PageRouteBuilder 설정
 
-To start, use a
-[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)
-to create a [Route]({{site.api}}/flutter/widgets/Route-class.html).
-`PageRouteBuilder` has two callbacks, one to build the content of the route
-(`pageBuilder`), and one to build the route's transition (`transitionsBuilder`).
+먼저, 
+[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)를 사용하여
+[Route]({{site.api}}/flutter/widgets/Route-class.html)를 생성하세요.
+`PageRouteBuilder`에는 2개의 콜백이 있는데, 하나는 route에 콘텐츠를 빌드하기 위해 사용하고(`pageBuilder`), 
+다른 하나는 route의 전환을 빌드하기 위해 사용합니다(`transitionsBuilder`).
 
 {{site.alert.note}}
-  The `child` parameter in transitionsBuilder is the widget returned from
-  pageBuilder. The `pageBuilder` function is only called the first time the
-  route is built. The framework can avoid extra work because `child` stays the
-  same throughout the transition.
+  pageBuilder에서 만들어진 위젯이 transitionsBuilder의 `child` 매개 변수로 전달됩니다. 
+  `pageBuilder` 함수는 route가 처음 빌드 될 때만 호출됩니다. 
+  전환 과정에서 `child`가 동일하게 유지될 때는 
+  프레임워크가 추가 작업을 하지 않을 수 있습니다.
 {{site.alert.end}}
 
-The following example creates two routes: a home route with a "Go!" button, and
-a second route titled "Page 2".
+다음 예제는 두 개의 route를 만듭니다. 
+"Go!" 버튼이 있는 홈 route와 제목이 "Page 2"인 두 번째 route입니다.
 
 ```dart
 import 'package:flutter/material.dart';
@@ -89,18 +89,17 @@ class Page2 extends StatelessWidget {
 }
 ```
 
-## 2. Create a Tween
+## 2. Tween 생성
 
-To make the new page animate in from the bottom, it should animate from
-`Offset(0,1)` to `Offset(0, 0)` (usually defined using the `Offset.zero`
-constructor). In this case, the Offset is a 2D vector for the
-[FractionalTranslation]({{site.api}}/flutter/widgets/FractionalTranslation-class.html)
-widget. Setting the `dy` argument to 1 represents a vertical translation one
-full height of the page.
+새 페이지를 아래에서 올라오는 애니메이션으로 만들고 싶다면, 
+`Offset(0, 1)`에서 `Offset(0, 0)`(일반적으로`Offset.zero` 생성자를 사용하여 정의)으로 
+애니메이션해야합니다. 이 경우, offset은 
+[FractionalTranslation]({{site.api}}/flutter/widgets/FractionalTranslation-class.html) 위젯의 2D 벡터입니다.
+`dy` 인자를 1로 설정하여 페이지 전체 높이의 수직 변환을 표현할 수 있습니다.
 
-The `transitionsBuilder` callback has an `animation` parameter. It's an
-`Animation<double>` that produces values between 0 and 1. Convert the
-Animation<double> into an Animation<Offset> using a Tween:
+`transitionsBuilder` 콜백에는 `animation` 매개 변수가 있습니다.
+이 매개 변수는 0에서 1 사이의 값을 생성하는 `Animation<double>`입니다. 
+Tween을 사용하여 Animation<double>을 Animation<Offset>으로 변환합니다: 
 
 ```dart
 transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -112,17 +111,17 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 },
 ```
 
-## 3. Use an AnimatedWidget
+## 3. AnimatedWidget 사용
 
-Flutter has a set of widgets extending
-[AnimatedWidget]({{site.api}}/flutter/widgets/AnimatedWidget-class.html)
-that rebuild themselves when the value of the animation changes. For instance,
-SlideTransition takes an `Animation<Offset>` and translates its child (using a
-FractionalTranslation widget) whenever the value of the animation changes.
+Flutter에는 애니메이션 값이 변경 될 때 다시 빌드되는 
+[AnimatedWidget]({{site.api}}/flutter/widgets/AnimatedWidget-class.html)을 
+확장한 여러 위젯 셋이 있습니다. 
+예를 들어 SlideTransition은 `Animation<Offset>`을 가져와서 
+애니메이션 값이 변경 될 때마다 자식을 변환합니다(FractionalTranslation 위젯을 사용).
 
-AnimatedWidget Return a
-[SlideTransition]({{site.api}}/flutter/widgets/SlideTransition-class.html)
-with the `Animation<Offset>` and the child widget:
+AnimatedWidget은 `Animation<Offset>`과 자식 위젯을 사용하여  
+[SlideTransition]({{site.api}}/flutter/widgets/SlideTransition-class.html)을 
+반환합니다.
 
 ```dart
 transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -138,30 +137,31 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 },
 ```
 
-## 4. Use a CurveTween
+## 4. CurveTween 사용
 
-Flutter provides a selection of easing curves that adjust the rate of the
-animation over time. The
-[Curves]({{site.api}}/flutter/animation/Curves-class.html) class
-provides a predefined set of commonly used curves. For example, `Curves.easeOut`
-will make the animation start quickly and end slowly.
+Flutter는 시간 경과에 따른 애니메이션 비율을 조정하는 
+다양한 easing curve을 제공합니다. 
+[Curves]({{site.api}}/flutter/animation/Curves-class.html) 클래스에는  
+많이 사용되는 curve가 미리 정의되어 있습니다. 
+예를 들어, `Curves.easeOut`은
+애니메이션이 빠르게 시작됐다가 천천히 끝나는 효과를 만듭니다.
 
-To use a Curve, create a new
-[CurveTween]({{site.api}}/flutter/animation/CurveTween-class.html)
-and pass it a Curve:
+Curve를 사용하려면 새로운 
+[CurveTween]({{site.api}}/flutter/animation/CurveTween-class.html)을 
+만들어 Curve에 전달하세요:
 
 ```dart
 var curve = Curves.ease;
 var curveTween = CurveTween(curve: curve);
 ```
 
-This new Tween still produces values from 0 to 1. In the next step, it will be
-combined the `Tween<Offset>` from step 2.
+이 새로운 트윈은 여전히 0에서 1 사이의 값을 생성합니다. 
+다음 단계에서는 2단계에서 만들었던 `Tween<Offset>`이 결합됩니다.
 
-## 5. Combine the two Tweens
+## 5. 두 개의 Tween 조합
 
-To combine the tweens, use
-[chain()]({{site.api}}/flutter/animation/Animatable/chain.html):
+여러 tween을 조합하기 위해, 
+[chain()]({{site.api}}/flutter/animation/Animatable/chain.html)을 사용하세요:
 
 ```dart
 var begin = Offset(0.0, 1.0);
@@ -171,8 +171,8 @@ var curve = Curves.ease;
 var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 ```
 
-Then use this tween by passing it to `animation.drive()`. This creates a new
-`Animation<Offset>` that can be given to the `SlideTransition` widget:
+그런 다음 트윈을 `animation.drive()`에 전달하여 사용하세요.
+이렇게하면 `SlideTransition` 위젯에 전달할 수 있는 새로운 `Animation<Offset>`이 생성됩니다:
 
 ```dart
 return SlideTransition(
@@ -181,18 +181,18 @@ return SlideTransition(
 );
 ```
 
-This new Tween (or Animatable) produces `Offset` values by first evaluating the
-`CurveTween`, then evaluating the `Tween<Offset>.` When the animation runs, the
-values are computed in this order:
+이 새로운 Tween(혹은 Animatable)은 
+먼저 `CurveTween`을 계산하여 `Offset`을 값을 생성한 다음, `Tween<Offset>`을 계산합니다. 
+애니메이션이 실행될 때, 값은 다음과 같은 순서로 계산됩니다.
 
-1. The animation (provided to the transitionsBuilder callback) produces values
-   from 0 to 1.
-2. The CurveTween maps those values to new values between 0 and 1 based on its
-   curve.
-3. The `Tween<Offset>` maps the `double` values to `Offset` values.
+1. (transitionsBuilder 콜백에서 제공되는) animation은 
+   0에서 1 사이의 값을 생성합니다.
+2. CurveTween은 해당 값을 curve를 기준으로 0과 1 사이의 
+   새로운 값으로 매핑합니다.
+3. `Tween<Offset>`은 `double` 값을 `Offset` 값에 매핑합니다.
 
-Another way to create an `Animation<Offset>` with an easing curve is to use a
-`CurvedAnimation`:
+easing curve로 `Animation<Offset>`을 만드는 또 다른 방법은  
+`CurvedAnimation`을 사용하는 것입니다:
 
 ```dart
 transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -213,7 +213,7 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 }
 ```
 
-## Complete Example
+## 전체 예제
 
 ```dart
 import 'package:flutter/material.dart';
